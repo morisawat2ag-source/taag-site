@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TAKEDA ARCHITECT &amp; ASSOCIATES — Entrance</title>
+<link rel="stylesheet" href="css/entrance.css">
+</head>
+<body>
+
+<noscript>
+  <div class="noscript-fallback">
+    <p>このページはJavaScriptによる演出を含みます。アニメーションをスキップして<a href="../about.html">サイトへ</a>進んでください。</p>
+  </div>
+</noscript>
+
+<div class="grid-bg"></div>
+<div id="petals"></div>
+
+<svg id="mainsvg" viewBox="0 0 804 720" width="100%" preserveAspectRatio="xMidYMid meet"
+  xmlns="http://www.w3.org/2000/svg"
+  style="cursor:pointer;position:relative;z-index:2;max-height:100vh"
+  onclick="skipToTop()">
+  <defs>
+    <marker id="da" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L7 4L1 7" fill="none" stroke="rgba(50,45,40,.42)" stroke-width=".9"/></marker>
+    <marker id="dal" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1L7 4L1 7" fill="none" stroke="rgba(50,45,40,.42)" stroke-width=".9"/></marker>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <radialGradient id="doorGlow" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#f5e8c8" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#f5e8c8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lightGlow" cx="50%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#fff8e0" stop-opacity=".12"/>
+      <stop offset="100%" stop-color="#fff8e0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ============================================ -->
+  <!-- 左側 寸法線（実オブジェクト基準、右寄せ後） -->
+  <!-- ============================================ -->
+
+  <!-- GL基準線 -->
+  <line x1="10" y1="460" x2="310" y2="460" stroke="rgba(50,45,40,.22)" stroke-width=".5" stroke-dasharray="6 3" class="draw draw-d2"/>
+  <text x="12" y="468" style="font-size:6.5px;fill:rgba(50,45,40,.45)" class="svg-fade svg-fade-d3">▼GL</text>
+
+  <!-- 建物屋根基準線 -->
+  <line x1="100" y1="130" x2="452" y2="130" stroke="rgba(50,45,40,.13)" stroke-width=".5" stroke-dasharray="6 3" class="draw draw-d3"/>
+
+  <!-- ① 建物高さ寸法 (GL→屋根 = 4,550) -->
+  <g class="svg-fade svg-fade-d3">
+    <line x1="120" y1="130" x2="120" y2="460" stroke="rgba(50,45,40,.2)" stroke-width=".5" stroke-dasharray="4 3"/>
+    <line x1="115" y1="130" x2="125" y2="130" stroke="rgba(50,45,40,.2)" stroke-width=".5"/>
+    <line x1="115" y1="460" x2="125" y2="460" stroke="rgba(50,45,40,.2)" stroke-width=".5"/>
+    <text x="114" y="300" text-anchor="middle" transform="rotate(-90,114,300)" style="font-size:6px;fill:rgba(50,45,40,.36)">4,550</text>
+  </g>
+
+  <!-- ② 桜の木高さ寸法 (GL→頂部 ≈ 3,640) -->
+  <g class="svg-fade svg-fade-d3">
+    <line x1="277" y1="196" x2="277" y2="460" stroke="rgba(50,45,40,.16)" stroke-width=".5" stroke-dasharray="4 3"/>
+    <line x1="272" y1="196" x2="282" y2="196" stroke="rgba(50,45,40,.16)" stroke-width=".5"/>
+    <line x1="272" y1="460" x2="282" y2="460" stroke="rgba(50,45,40,.16)" stroke-width=".5"/>
+    <text x="271" y="332" text-anchor="middle" transform="rotate(-90,271,332)" style="font-size:6px;fill:rgba(50,45,40,.32)">3,640</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- 下部タイトルブロック（960幅対応・全枠線再現） -->
+  <!-- 外枠: x=10 → x=950, y=580 → y=665 -->
+  <!-- ============================================ -->
+  <g class="svg-fade" style="animation-delay:1.8s">
+    <!-- ── 外枠 ── -->
+    <rect x="10" y="580" width="784" height="85" fill="none" stroke="rgba(0,0,0,.85)" stroke-width="1"/>
+
+    <!-- ══ 大区画 縦線 ══ -->
+    <line x1="200" y1="580" x2="200" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".7"/>
+    <line x1="434" y1="580" x2="434" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".7"/>
+    <line x1="504" y1="580" x2="504" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".7"/>
+    <line x1="624" y1="580" x2="624" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".7"/>
+    <line x1="724" y1="580" x2="724" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".7"/>
+
+    <!-- ══ 空欄グリッド ══ -->
+    <line x1="200" y1="622" x2="434" y2="622" stroke="rgba(0,0,0,.85)" stroke-width=".4"/>
+    <line x1="226" y1="580" x2="226" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".4"/>
+    <line x1="278" y1="580" x2="278" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".4"/>
+    <line x1="304" y1="580" x2="304" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".4"/>
+    <line x1="356" y1="580" x2="356" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".4"/>
+    <line x1="382" y1="580" x2="382" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".4"/>
+
+    <!-- ══ 物件名・図面名欄 横線（上下2段） ══ -->
+    <line x1="504" y1="622" x2="624" y2="622" stroke="rgba(0,0,0,.85)" stroke-width=".5"/>
+
+    <!-- ══ 縮尺/日付/制作者/検印 欄 横線（4段） ══ -->
+    <line x1="624" y1="601" x2="724" y2="601" stroke="rgba(0,0,0,.85)" stroke-width=".5"/>
+    <line x1="624" y1="622" x2="724" y2="622" stroke="rgba(0,0,0,.85)" stroke-width=".5"/>
+    <line x1="624" y1="643" x2="724" y2="643" stroke="rgba(0,0,0,.85)" stroke-width=".5"/>
+    <line x1="659" y1="580" x2="659" y2="665" stroke="rgba(0,0,0,.85)" stroke-width=".4"/>
+
+    <!-- ── 社名欄：武田菱 + TAKEDA ── -->
+    <g transform="translate(105,598)" fill="rgba(0,0,0,.8)" stroke="none">
+      <polygon points="0,-13 9,-7 0,-1 -9,-7"/>
+      <polygon points="0,1 9,7 0,13 -9,7"/>
+      <polygon points="-1,0 -10,-6 -19,0 -10,6"/>
+      <polygon points="1,0 10,-6 19,0 10,6"/>
+    </g>
+    <text x="105" y="628" text-anchor="middle" style="font-size:11px;fill:rgba(0,0,0,.8);letter-spacing:.35em;font-weight:400">TAKEDA</text>
+    <text x="105" y="641" text-anchor="middle" style="font-size:5px;fill:rgba(0,0,0,.8);letter-spacing:.15em">ARCHITECT &amp; ASSOCIATES</text>
+    <text x="105" y="654" text-anchor="middle" style="font-size:4.5px;fill:rgba(0,0,0,.8);letter-spacing:.06em">一級建築士　国土交通大臣登録　第341436号　武田嘉仁</text>
+
+    <!-- ── 方位マーク + 真北 ── -->
+    <circle cx="469" cy="622" r="16" fill="none" stroke="rgba(0,0,0,.85)" stroke-width=".6"/>
+    <line x1="469" y1="606" x2="469" y2="638" stroke="rgba(0,0,0,.85)" stroke-width=".6"/>
+    <line x1="453" y1="622" x2="485" y2="622" stroke="rgba(0,0,0,.85)" stroke-width=".6"/>
+    <polygon points="469,604 466,612 472,612" fill="rgba(0,0,0,.8)"/>
+    <text x="469" y="601" text-anchor="middle" style="font-size:6px;fill:rgba(0,0,0,.8)">N</text>
+    <text x="478" y="601" style="font-size:5px;fill:rgba(0,0,0,.8)">(真北)</text>
+
+    <!-- ── 物件名・図面名 ── -->
+    <text x="509" y="592" style="font-size:5px;fill:rgba(0,0,0,.8)">物件名</text>
+    <text x="514" y="612" style="font-size:10px;fill:rgba(0,0,0,.8)">TAAGプロジェクト</text>
+    <text x="509" y="634" style="font-size:5px;fill:rgba(0,0,0,.8)">図面名</text>
+    <text x="514" y="654" style="font-size:11px;fill:rgba(0,0,0,.8)">西立面図</text>
+
+    <!-- ── 縮尺/日付/制作者/検印 ── -->
+    <text x="629" y="595" style="font-size:5px;fill:rgba(0,0,0,.8)">縮尺</text>
+    <text x="664" y="596" style="font-size:9px;fill:rgba(0,0,0,.8)">1/50</text>
+    <text x="629" y="616" style="font-size:5px;fill:rgba(0,0,0,.8)">日付</text>
+    <text id="dateDisp" x="820" y="617" style="font-size:9px;fill:rgba(0,0,0,.8)"></text>
+    <text x="629" y="637" style="font-size:5px;fill:rgba(0,0,0,.8)">制作</text>
+    <text x="664" y="638" style="font-size:9px;fill:rgba(0,0,0,.8)">武田嘉仁</text>
+    <text x="629" y="658" style="font-size:5px;fill:rgba(0,0,0,.8)">検印</text>
+
+    <!-- ── 図面番号 ── -->
+    <text x="759" y="635" text-anchor="middle" style="font-size:20px;fill:rgba(0,0,0,.8);letter-spacing:.05em;font-weight:400">A-07</text>
+  </g>
+
+  <g transform="translate(222,0)">
+  <!-- 桜の木 -->
+  <line x1="52" y1="460" x2="60" y2="340" stroke="rgba(130,100,50,.55)" stroke-width="3.5" stroke-linecap="round" class="draw draw-d2"/>
+  <line x1="60" y1="340" x2="46" y2="252" stroke="rgba(130,100,50,.55)" stroke-width="3" stroke-linecap="round" class="draw draw-d3"/>
+  <line x1="60" y1="340" x2="80" y2="288" stroke="rgba(130,100,50,.55)" stroke-width="2" stroke-linecap="round" class="draw draw-d3"/>
+  <line x1="46" y1="252" x2="30" y2="206" stroke="rgba(130,100,50,.55)" stroke-width="2" stroke-linecap="round" class="draw draw-d4"/>
+  <line x1="46" y1="252" x2="64" y2="212" stroke="rgba(130,100,50,.55)" stroke-width="1.8" stroke-linecap="round" class="draw draw-d4"/>
+  <g opacity=".8" class="svg-fade svg-fade-d2">
+    <circle cx="32" cy="196" r="26" fill="rgba(240,140,160,.55)"/>
+    <circle cx="64" cy="202" r="21" fill="rgba(230,120,148,.5)"/>
+    <circle cx="84" cy="278" r="17" fill="rgba(240,140,160,.48)"/>
+    <circle cx="44" cy="236" r="16" fill="rgba(235,130,155,.52)"/>
+    <circle cx="16" cy="230" r="14" fill="rgba(240,140,160,.45)"/>
+  </g>
+  <g fill="rgba(240,140,160,.6)" class="svg-fade svg-fade-d2">
+    <ellipse cx="108" cy="315" rx="5" ry="3.2" transform="rotate(22,108,315)"/>
+    <ellipse cx="94" cy="368" rx="4.5" ry="2.8" transform="rotate(-18,94,368)"/>
+    <ellipse cx="120" cy="408" rx="4" ry="2.6" transform="rotate(38,120,408)"/>
+    <ellipse cx="78" cy="442" rx="4.8" ry="3" transform="rotate(-8,78,442)"/>
+  </g>
+
+  <!-- 地面 -->
+  <line x1="-290" y1="460" x2="950" y2="460" stroke="rgba(60,55,50,.5)" stroke-width="2" class="draw draw-d1"/>
+
+  <!-- 建物 -->
+  <rect x="230" y="130" width="300" height="330" fill="rgba(50,45,40,.05)" class="svg-fade" style="animation-delay:1s"/>
+  <line x1="230" y1="460" x2="230" y2="130" stroke="rgba(60,55,50,.5)" stroke-width="2.5" class="draw draw-d2"/>
+  <line x1="230" y1="130" x2="530" y2="130" stroke="rgba(60,55,50,.5)" stroke-width="2.5" class="draw draw-d3"/>
+  <line x1="530" y1="130" x2="530" y2="460" stroke="rgba(60,55,50,.5)" stroke-width="2.5" class="draw draw-d2"/>
+  <line x1="240" y1="140" x2="520" y2="140" stroke="rgba(50,45,40,.13)" stroke-width=".5" stroke-dasharray="4 3" class="draw draw-d4"/>
+  <line x1="240" y1="450" x2="520" y2="450" stroke="rgba(50,45,40,.13)" stroke-width=".5" stroke-dasharray="4 3" class="draw draw-d4"/>
+
+  <!-- 照明（天井） -->
+  <line x1="360" y1="130" x2="420" y2="130" stroke="rgba(60,55,50,.5)" stroke-width="1.5" class="draw draw-d4"/>
+  <line x1="390" y1="130" x2="390" y2="145" stroke="rgba(60,55,50,.5)" stroke-width="1.2" class="draw draw-d4"/>
+  <ellipse cx="390" cy="150" rx="12" ry="4" fill="none" stroke="rgba(60,55,50,.5)" stroke-width="1" class="draw draw-d5"/>
+  <line x1="378" y1="154" x2="350" y2="220" stroke="rgba(50,45,40,.1)" stroke-width=".5" stroke-dasharray="2 4" class="svg-fade svg-fade-d3"/>
+  <line x1="390" y1="154" x2="390" y2="230" stroke="rgba(50,45,40,.1)" stroke-width=".5" stroke-dasharray="2 4" class="svg-fade svg-fade-d3"/>
+  <line x1="402" y1="154" x2="430" y2="220" stroke="rgba(50,45,40,.1)" stroke-width=".5" stroke-dasharray="2 4" class="svg-fade svg-fade-d3"/>
+  <ellipse cx="390" cy="240" rx="60" ry="100" fill="url(#lightGlow)" class="svg-fade svg-fade-d3"/>
+
+  <!-- ドア枠 -->
+  <rect x="370" y="315" width="88" height="145" fill="#f5f3f0" class="svg-fade" style="animation-delay:1.2s"/>
+  <rect x="370" y="315" width="88" height="145" fill="none" stroke="rgba(60,55,50,.5)" stroke-width="1.5" class="draw draw-d4"/>
+  <rect x="454" y="328" width="4" height="10" rx="1" fill="rgba(50,45,40,.35)" opacity=".45" class="svg-fade svg-fade-d3"/>
+  <rect x="454" y="437" width="4" height="10" rx="1" fill="rgba(50,45,40,.35)" opacity=".45" class="svg-fade svg-fade-d3"/>
+  <rect id="doorLight" x="370" y="315" width="88" height="145" fill="url(#doorGlow)" opacity="0" style="transition:opacity .8s ease .3s"/>
+  <g id="doorAnim" style="transform-origin:458px 387px;transform:perspective(700px) rotateY(0deg)">
+    <rect x="370" y="315" width="88" height="145" fill="rgba(220,218,215,.85)" stroke="rgba(60,55,50,.5)" stroke-width="1.5"/>
+    <rect x="377" y="322" width="74" height="60" rx="1" fill="none" stroke="rgba(60,55,50,.5)" stroke-width=".75"/>
+    <rect x="377" y="390" width="74" height="63" rx="1" fill="none" stroke="rgba(60,55,50,.5)" stroke-width=".75"/>
+    <rect x="454" y="328" width="4" height="10" rx="1" fill="rgba(50,45,40,.35)" opacity=".5"/>
+    <rect x="454" y="437" width="4" height="10" rx="1" fill="rgba(50,45,40,.35)" opacity=".5"/>
+    <circle cx="380" cy="387" r="4" fill="none" stroke="rgba(60,55,50,.5)" stroke-width="1.2"/>
+    <line x1="376" y1="387" x2="384" y2="387" stroke="rgba(60,55,50,.5)" stroke-width="1"/>
+  </g>
+
+  <!-- ===== 建築パース風人物 ===== -->
+  <g id="person" filter="url(#rough)">
+    <path id="legB" d="M90,415 Q84,432 82,447 Q81,455 83,460 L77,460 Q75,455 76,447 Q78,432 84,415 Z"
+      fill="#f5f3f0" stroke="rgba(50,45,40,.65)" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <path id="armB" d="M86,362 Q79,371 76,381 Q74,389 75,395"
+      fill="none" stroke="rgba(50,45,40,.65)" stroke-width="1.1" stroke-linecap="round"/>
+    <path id="torso" d="M83,355 Q79,362 78,372 Q77,382 78,392 Q79,400 81,408 Q84,413 90,415 Q96,413 99,408 Q101,400 102,392 Q103,382 102,372 Q101,362 97,355 Q94,352 90,352 Q86,352 83,355 Z"
+      fill="#f5f3f0" stroke="rgba(50,45,40,.65)" stroke-width="1.3" stroke-linejoin="round"/>
+    <path d="M88,342 Q87,346 87,350 Q88,353 90,354 Q92,353 93,350 Q93,346 92,342"
+      fill="#f5f3f0" stroke="rgba(50,45,40,.65)" stroke-width="1.1" stroke-linecap="round"/>
+    <ellipse id="head" cx="90" cy="336" rx="9.5" ry="11"
+      fill="#f5f3f0" stroke="rgba(50,45,40,.65)" stroke-width="1.4"/>
+    <path id="armF" d="M94,362 Q101,371 104,381 Q106,389 105,395"
+      fill="none" stroke="rgba(50,45,40,.65)" stroke-width="1.3" stroke-linecap="round"/>
+    <path id="legF" d="M90,415 Q96,432 98,447 Q99,455 97,460 L103,460 Q105,455 104,447 Q102,432 96,415 Z"
+      fill="#f5f3f0" stroke="rgba(50,45,40,.65)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+    <path id="shoeB" d="M77,460 Q73,458 70,460 Q69,462 72,463 Q76,464 79,462 Z"
+      fill="rgba(50,45,40,.65)" stroke="none"/>
+    <path id="shoeF" d="M99,460 Q103,458 106,460 Q107,462 104,463 Q100,464 98,462 Z"
+      fill="rgba(50,45,40,.65)" stroke="none"/>
+  </g>
+
+  <!-- 身長寸法 -->
+  <line x1="270" y1="325" x2="296" y2="325" stroke="rgba(50,45,40,.25)" stroke-width=".5" class="draw draw-d5"/>
+  <line x1="270" y1="460" x2="296" y2="460" stroke="rgba(50,45,40,.25)" stroke-width=".5" class="draw draw-d5"/>
+  <line x1="282" y1="329" x2="282" y2="456" stroke="rgba(50,45,40,.32)" stroke-width=".7" marker-start="url(#dal)" marker-end="url(#da)" class="draw draw-d5"/>
+  <text x="262" y="396" text-anchor="middle" style="font-size:7.5px;fill:rgba(50,45,40,.38)" class="svg-fade svg-fade-d3">H=</text>
+  <text x="262" y="406" text-anchor="middle" style="font-size:7.5px;fill:rgba(50,45,40,.38)" class="svg-fade svg-fade-d3">1,750</text>
+  <line id="walkArrow" x1="212" y1="448" x2="236" y2="448" stroke="rgba(50,45,40,.25)" stroke-width=".9" marker-end="url(#da)" class="svg-fade svg-fade-d3"/>
+
+  <!-- 扉高さ寸法 -->
+  <line x1="462" y1="315" x2="490" y2="315" stroke="rgba(50,45,40,.25)" stroke-width=".5" class="draw draw-d5"/>
+  <line x1="462" y1="460" x2="490" y2="460" stroke="rgba(50,45,40,.25)" stroke-width=".5" class="draw draw-d5"/>
+  <line x1="482" y1="319" x2="482" y2="456" stroke="rgba(200,190,175,.38)" stroke-width=".7" marker-start="url(#dal)" marker-end="url(#da)" class="draw draw-d5"/>
+  <text x="490" y="392" style="font-size:8px;fill:rgba(50,45,40,.42)" class="svg-fade svg-fade-d3">H=2,000</text>
+  <!-- 建物幅寸法 -->
+  <line x1="230" y1="478" x2="530" y2="478" stroke="rgba(200,190,175,.38)" stroke-width=".7" marker-start="url(#dal)" marker-end="url(#da)" class="draw draw-d5"/>
+  <text x="380" y="492" text-anchor="middle" style="font-size:8px;fill:rgba(50,45,40,.42)" class="svg-fade svg-fade-d3">W=7,300</text>
+  <line x1="230" y1="460" x2="230" y2="480" stroke="rgba(200,190,175,.24)" stroke-width=".5" class="draw draw-d5"/>
+  <line x1="530" y1="460" x2="530" y2="480" stroke="rgba(200,190,175,.24)" stroke-width=".5" class="draw draw-d5"/>
+  </g>
+
+  <!-- スキップヒント -->
+  <text class="hint" x="402" y="695" text-anchor="middle" style="font-size:9px;fill:rgba(50,45,40,.28);letter-spacing:.28em">── CLICK TO SKIP ──</text>
+</svg>
+
+<div class="flash" id="flash"></div>
+
+<div class="top-page" id="topPage">
+  <img class="bg-img" src="../images/003_0773.jpg" alt="">
+  <div class="overlay-grad"></div>
+  <div class="top-content">
+    <div class="top-header">
+      <div>
+        <div class="top-logo">武田建築設計事務所</div>
+        <div class="top-logo-sub">TAKEDA ARCHITECT &amp; ASSOCIATES</div>
+      </div>
+      <nav class="top-nav">
+        <a href="../about.html"><span class="nav-en">ABOUT US</span><span class="nav-jp">私たちについて</span></a>
+        <a href="/projects/"><span class="nav-en">WORKS</span><span class="nav-jp">実績紹介</span></a>
+        <a href="/flow/"><span class="nav-en">WORK FLOW</span><span class="nav-jp">依頼の流れ</span></a>
+        <a href="/recruit/"><span class="nav-en">RECRUIT</span><span class="nav-jp">採用情報</span></a>
+        <a href="/contact/"><span class="nav-en">CONTACT</span><span class="nav-jp">お問い合わせ</span></a>
+      </nav>
+    </div>
+    <div class="top-footer">
+      <div class="top-tagline"><span class="tag-line">空間が、</span><span class="tag-line"><span style="color:rgba(200,160,120,.95)">記憶</span>になる</span><span class="tag-line">場所へ。</span></div>
+      <button class="back-btn" onclick="goBack()">← ENTRANCE</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/entrance.js"></script>
+</body>
+</html>

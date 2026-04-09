@@ -1,0 +1,283 @@
+@charset "UTF-8";
+/* ============================================================
+ * TAAG Entrance Page Stylesheet
+ * 真のソース。CMSへ貼り付ける際は本ファイルの内容を
+ * フロンティア管理画面 [ページ単位 上級者設定 > 独自CSS] に転記する。
+ * ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #f5f3f0;
+  font-family: 'Share Tech Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.grid-bg { display: none; }
+
+/* === 桜の花びら降下 === */
+@keyframes fall {
+  0%   { transform: translateY(-10px) rotate(0deg);   opacity: .9; }
+  100% { transform: translateY(660px) rotate(360deg); opacity: 0; }
+}
+.petal {
+  position: fixed;
+  pointer-events: none;
+  top: -12px;
+  border-radius: 50% 50% 50% 0;
+  animation: fall linear infinite;
+}
+
+/* === スキップヒントの点滅 === */
+@keyframes blink {
+  0%, 100% { opacity: .25; }
+  50%      { opacity: .75; }
+}
+.hint { animation: blink 2.2s ease-in-out infinite; }
+
+/* === 図面描画アニメーション === */
+.draw {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: drawIn 2s ease forwards;
+}
+@keyframes drawIn { to { stroke-dashoffset: 0; } }
+.draw-d1 { animation-delay: .1s; }
+.draw-d2 { animation-delay: .3s; }
+.draw-d3 { animation-delay: .6s; }
+.draw-d4 { animation-delay: .9s; }
+.draw-d5 { animation-delay: 1.2s; }
+
+.svg-fade { opacity: 0; animation: svgFadeIn .8s ease forwards; }
+.svg-fade-d2 { animation-delay: 1.6s; }
+.svg-fade-d3 { animation-delay: 2s; }
+@keyframes svgFadeIn { to { opacity: 1; } }
+
+/* === ホワイトフラッシュ === */
+.flash {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.4s ease-in;
+  z-index: 200;
+}
+.flash.on { opacity: 1; }
+.flash.slow-out { transition: opacity 2s ease-out; }
+
+/* ============================================================
+ * トップページオーバーレイ（仮実装）
+ * ※将来 CMS に正規 TOP ページ (/) ができたら、このオーバーレイは
+ *   削除して location.href='/' でジャンプする方式に切り替える。
+ * ============================================================ */
+.top-page {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s;
+  z-index: 100;
+  background: #808080;
+}
+.top-page.show { opacity: 1; pointer-events: all; }
+
+.top-page .bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0.8);
+}
+.top-page .overlay-grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(8,7,5,.7) 100%);
+}
+.top-page .top-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 48px;
+}
+.top-page .top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.top-page .top-logo {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  color: rgba(255,250,240,.95);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all .6s .3s;
+}
+.top-page .top-logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .25em;
+  color: rgba(255,250,240,.5);
+  margin-top: 6px;
+  opacity: 0;
+  transition: all .6s .4s;
+}
+.top-page.show .top-logo,
+.top-page.show .top-logo-sub,
+.top-page.show .top-nav,
+.top-page.show .back-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+.top-page .top-nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all .6s .5s;
+}
+.top-page .top-nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .28em;
+  color: rgba(255,250,240,.75);
+  text-decoration: none;
+  transition: color .2s;
+  position: relative;
+}
+.top-page .top-nav a:hover { color: rgba(255,250,240,1); }
+.top-page .top-nav a .nav-jp {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 12px);
+  transform: translateX(-50%) translateY(-4px);
+  white-space: nowrap;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .08em;
+  color: rgba(255,250,240,.85);
+  background: rgba(40,38,35,.85);
+  padding: 6px 14px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, transform .3s;
+}
+.top-page .top-nav a .nav-jp::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid rgba(40,38,35,.85);
+}
+.top-page .top-nav a:hover .nav-jp {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.top-page .top-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.top-page .top-tagline {
+  position: fixed;
+  left: 48px;
+  bottom: 80px;
+  font-family: 'MS Gothic','Hiragino Kaku Gothic ProN','Yu Gothic', sans-serif;
+  font-size: 57px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: .06em;
+  color: rgba(255,250,240,.92);
+  line-height: 1.4;
+}
+
+/* === タグライン スライドイン === */
+@keyframes slideInBounce {
+  0%   { transform: translateX(100vw); opacity: 0; }
+  5%   { opacity: 1; }
+  70%  { transform: translateX(-18px);  opacity: 1; }
+  82%  { transform: translateX(8px);    opacity: 1; }
+  92%  { transform: translateX(-3px);   opacity: 1; }
+  100% { transform: translateX(0);      opacity: 1; }
+}
+.top-page .tag-line {
+  display: block;
+  opacity: 0;
+  transform: translateX(100vw);
+}
+.top-page.show .tag-line { animation: slideInBounce 1.8s ease-out forwards; }
+.top-page.show .tag-line:nth-child(1) { animation-delay: .5s; }
+.top-page.show .tag-line:nth-child(2) { animation-delay: .85s; }
+.top-page.show .tag-line:nth-child(3) { animation-delay: 1.2s; }
+
+/* === ENTRANCE戻りボタン === */
+.top-page .back-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  color: rgba(255,250,240,.4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: all .6s .7s;
+}
+.top-page .back-btn:hover { color: rgba(255,250,240,.9); }
+
+/* === noscript フォールバック === */
+.noscript-fallback {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f3f0;
+  z-index: 1000;
+  text-align: center;
+  padding: 40px;
+  font-family: 'Shippori Mincho B1','Yu Mincho',serif;
+}
+.noscript-fallback h1 {
+  font-size: 28px;
+  letter-spacing: .15em;
+  margin-bottom: 12px;
+  color: rgba(40,38,35,.9);
+}
+.noscript-fallback p {
+  font-size: 14px;
+  letter-spacing: .1em;
+  color: rgba(60,55,50,.7);
+  margin-bottom: 24px;
+}
+.noscript-fallback a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  letter-spacing: .25em;
+  color: rgba(40,38,35,.85);
+  text-decoration: none;
+  border: 1px solid rgba(40,38,35,.5);
+  padding: 12px 28px;
+}
+.noscript-fallback a:hover { background: rgba(40,38,35,.05); }
