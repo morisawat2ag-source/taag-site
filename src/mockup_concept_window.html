@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>コンセプトセクション — 窓モチーフ版</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Montserrat:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { background: #f5f3f0; }
+
+/* ============================================================
+ * ヒーローセクション（ファーストビュー）
+ * ============================================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: #d0ccc8;
+  overflow: hidden;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center 38%;
+}
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(208,204,200,1) 0%,
+    rgba(208,204,200,.5) 18%,
+    transparent 32%,
+    transparent 62%,
+    rgba(60,55,50,.5) 78%,
+    rgba(40,38,35,.85) 100%
+  );
+  pointer-events: none;
+}
+.hero .hero-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 24px 20px;
+}
+.hero .hero-logo {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  color: rgba(255,250,240,.95);
+}
+.hero .hero-logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: .25em;
+  color: rgba(255,250,240,.5);
+  margin-top: 4px;
+}
+.hero .hero-footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 20px 28px;
+}
+.hero .hero-tagline {
+  font-family: 'MS Gothic','Hiragino Kaku Gothic ProN','Yu Gothic', sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: .06em;
+  color: rgba(255,250,240,.92);
+  line-height: 1.5;
+}
+.hero .scroll-hint {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: rgba(255,250,240,.35);
+  margin-top: 16px;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%, 100% { opacity: .35; }
+  50% { opacity: .8; }
+}
+
+/* ============================================================
+ * コンセプトセクション — 窓モチーフ
+ * ============================================================ */
+.concept {
+  padding: 80px 0;
+  background: #f5f3f0;
+}
+
+/* --- コンセプト上部: テキスト --- */
+.concept-text {
+  padding: 0 28px;
+  margin-bottom: 56px;
+}
+.concept-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .3em;
+  color: rgba(60,55,50,.4);
+  margin-bottom: 28px;
+}
+.concept-lead {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 2.2;
+  color: rgba(40,38,35,.88);
+  margin-bottom: 36px;
+}
+.concept-body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 2.2;
+  letter-spacing: .04em;
+  color: rgba(60,55,50,.7);
+  max-width: 540px;
+}
+.concept-body + .concept-body {
+  margin-top: 24px;
+}
+
+/* --- コンセプト中央: 窓フレーム + スライドショー --- */
+.window-frame {
+  position: relative;
+  width: 85%;
+  max-width: 480px;
+  margin: 0 auto 48px;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px 12px 2px 2px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(40,38,35,.12),
+    inset 0 0 0 1px rgba(40,38,35,.06);
+}
+/* 窓の上部アーチ風 */
+.window-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: rgba(40,38,35,.08);
+  z-index: 2;
+}
+/* 窓の桟（さん）— 十字 */
+.window-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, transparent calc(50% - 1px), rgba(200,195,188,.7) calc(50% - 1px), rgba(200,195,188,.7) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(to bottom, transparent calc(45% - 1px), rgba(200,195,188,.7) calc(45% - 1px), rgba(200,195,188,.7) calc(45% + 1px), transparent calc(45% + 1px));
+}
+
+.window-slider {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  animation: windowSlide 16s ease-in-out infinite;
+}
+.window-slider img {
+  width: 25%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+@keyframes windowSlide {
+  0%, 22%   { transform: translateX(0); }
+  25%, 47%  { transform: translateX(-25%); }
+  50%, 72%  { transform: translateX(-50%); }
+  75%, 97%  { transform: translateX(-75%); }
+  100%      { transform: translateX(0); }
+}
+
+/* 窓の外枠（影で奥行き感） */
+.window-outer {
+  position: relative;
+  width: 85%;
+  max-width: 480px;
+  margin: 0 auto 48px;
+  padding: 12px;
+  background: rgba(220,218,215,.5);
+  border-radius: 16px 16px 4px 4px;
+  box-shadow: 0 2px 12px rgba(40,38,35,.08);
+}
+.window-outer .window-frame {
+  width: 100%;
+  margin: 0;
+}
+
+/* --- コンセプト下部: 署名 --- */
+.concept-signature {
+  padding: 0 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: rgba(60,55,50,.35);
+  text-align: right;
+}
+
+/* --- スライドインジケーター --- */
+.slide-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: -32px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 3;
+}
+.slide-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(40,38,35,.2);
+}
+.slide-dots span.active {
+  background: rgba(40,38,35,.5);
+}
+
+/* ============================================================
+ * セパレーター（次セクションへの導線）
+ * ============================================================ */
+.separator {
+  text-align: center;
+  padding: 48px 28px;
+  background: #f5f3f0;
+}
+.separator a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: .25em;
+  color: rgba(40,38,35,.55);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(40,38,35,.2);
+  padding-bottom: 4px;
+  transition: all .3s;
+}
+.separator a:hover {
+  color: rgba(40,38,35,.9);
+  border-color: rgba(40,38,35,.6);
+}
+
+/* ============================================================
+ * レスポンシブ
+ * ============================================================ */
+@media (min-width: 769px) {
+  .concept-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+    padding: 0 48px;
+  }
+  .concept-text {
+    flex: 1;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .window-outer {
+    flex-shrink: 0;
+    width: 320px;
+    margin: 0;
+  }
+  .concept-lead {
+    font-size: 28px;
+  }
+  .slide-dots {
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <img src="../images/003_0773.jpg" alt="">
+  <div class="overlay"></div>
+  <div class="hero-header">
+    <div class="hero-logo">武田建築設計事務所</div>
+    <div class="hero-logo-sub">TAKEDA ARCHITECT &amp; ASSOCIATES</div>
+  </div>
+  <div class="hero-footer">
+    <div class="hero-tagline">空間が、<br>記憶になる<br>場所へ。</div>
+    <div class="scroll-hint">↓ SCROLL</div>
+  </div>
+</section>
+
+<!-- コンセプトセクション -->
+<section class="concept">
+  <div class="concept-inner">
+    <div class="concept-text">
+      <p class="concept-label">CONCEPT</p>
+      <p class="concept-lead">
+        その場所にしかない<br>
+        光と記憶を、<br>
+        かたちにする。
+      </p>
+      <p class="concept-body">
+        朝の光がキッチンに差し込む角度。風が抜ける窓の位置。季節ごとに変わる庭の景色。暮らしのなかで毎日触れるものだからこそ、建築には丁寧な思考が求められます。
+      </p>
+      <p class="concept-body">
+        武田建築設計事務所は、住まい手の暮らしと土地の声に耳を傾け、10年後に「ここで良かった」と思える空間を設計します。
+      </p>
+    </div>
+
+    <!-- 窓フレーム写真スライド -->
+    <div class="window-outer">
+      <div class="window-frame">
+        <div class="window-slider">
+          <img src="../images/003_0773.jpg" alt="" style="object-position: center center;">
+          <img src="../images/003_0773.jpg" alt="" style="object-position: left center;">
+          <img src="../images/003_0773.jpg" alt="" style="object-position: right center;">
+          <img src="../images/003_0773.jpg" alt="" style="object-position: center top;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <p class="concept-signature">— TAKEDA ARCHITECT &amp; ASSOCIATES</p>
+</section>
+
+<!-- 次セクションへの導線 -->
+<div class="separator">
+  <a href="#">VIEW OUR WORKS →</a>
+</div>
+
+</body>
+</html>
