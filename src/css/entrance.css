@@ -331,39 +331,14 @@ body {
   background: #e8e6e3;
 }
 
-/* --- コンセプト上部: テキスト --- */
-.concept-text {
-  padding: 0 28px;
-  margin-bottom: 56px;
+/* --- コンセプトレイアウト: スマホ=縦積み（窓→テキスト） PC=横並び（テキスト左・窓右） --- */
+.concept-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.concept-label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: .3em;
-  color: rgba(60,55,50,.4);
-  margin-bottom: 28px;
-}
-.concept-lead {
-  font-family: 'MS Gothic','Hiragino Kaku Gothic ProN','Yu Gothic', sans-serif;
-  font-size: 57px;
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: .06em;
-  line-height: 1.4;
-  color: rgba(40,38,35,.88);
-  margin-bottom: 0;
-}
-
-/* --- 窓+本文のオーバーラップエリア --- */
-.concept-window-area {
-  position: relative;
-}
-.concept-body-overlay {
-  position: relative;
-  margin-top: -60px;
-  padding: 0 28px;
-  z-index: 4;
+.concept-body-area {
+  padding: 32px 28px 0;
 }
 .concept-body {
   font-family: 'Noto Sans JP', sans-serif;
@@ -438,8 +413,7 @@ body {
   position: relative;
   width: 90%;
   max-width: 600px;
-  margin: 0 auto 48px;
-  margin-left: calc(50% - 90% / 2 - 20px);
+  margin: 0 auto;
   padding: 12px;
   background: rgba(220,218,215,.5);
   border-radius: 10px;
@@ -513,8 +487,9 @@ body {
     background: #d0ccc8;
   }
 
-  /* --- モバイル: 写真をやや上寄りに --- */
+  /* --- モバイル: coverで画面いっぱい、やや上寄りに --- */
   .top-page .bg-img {
+    object-fit: cover;
     object-position: center 38%;
   }
 
@@ -581,12 +556,14 @@ body {
     min-height: 44px;
   }
 
-  /* --- コンセプトセクション モバイル調整 --- */
-  .concept-lead {
-    font-size: 32px;
+  /* --- コンセプトセクション モバイル: 窓中央→テキスト下 --- */
+  .concept-layout {
+    flex-direction: column;
+    align-items: center;
   }
-  .concept-body-overlay {
-    margin-top: -40px;
+  .window-outer {
+    width: 85%;
+    margin: 0 auto;
   }
 }
 
@@ -625,33 +602,32 @@ body {
  * コンセプトセクション PC版レイアウト（769px以上）
  * ============================================================ */
 @media (min-width: 769px) {
+  .concept {
+    padding: 100px 0;
+  }
   .concept-inner {
-    display: block;
-    padding: 0 48px;
-    max-width: 960px;
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 0 48px;
   }
-  .concept-text {
-    padding: 0;
-    margin-bottom: 48px;
-  }
-  .concept-lead {
-    font-size: 57px;
+  /* PC: テキスト左・窓右の横並び */
+  .concept-layout {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 48px;
   }
   .window-outer {
-    width: 520px;
+    flex-shrink: 0;
+    width: 480px;
     margin: 0;
-    margin-left: calc(50% - 520px / 2 - 40px);
   }
-  .concept-body-overlay {
-    margin-top: -80px;
+  .concept-body-area {
+    flex: 1;
     padding: 0;
-    max-width: 520px;
+    min-width: 0;
   }
   .slide-dots {
     margin-top: 16px;
     margin-bottom: 0;
-    justify-content: flex-start;
-    margin-left: calc(50% - 520px / 2 - 40px + 12px);
   }
 }
