@@ -5,7 +5,7 @@
  * フロンティア管理画面 [ページ単位 上級者設定 > 独自CSS] に転記する。
  * ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&family=Shippori+Mincho+B1:wght@400;600;800&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&family=Shippori+Mincho+B1:wght@400;600;800&family=Montserrat:wght@300;400;500&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { overflow-x: hidden; }
@@ -157,7 +157,7 @@ body {
   align-items: flex-start;
 }
 .top-page .top-logo {
-  font-family: 'Shippori Mincho B1', serif;
+  font-family: 'Klee One', cursive;
   font-size: 24px;
   font-weight: 600;
   letter-spacing: .15em;
@@ -627,7 +627,7 @@ body {
      margin-top負値で「風土を持っています。」の行に少し被さる */
   .concept-window-wrap {
     margin-top: -20px;
-    padding-left: 5%;
+    padding-left: calc(5% + 230px);
     position: relative;
     z-index: 0;
   }
