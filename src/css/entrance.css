@@ -105,6 +105,7 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, transparent 40%, rgba(8,7,5,.7) 100%);
+  pointer-events: none;
 }
 .top-page .top-content {
   position: absolute;
@@ -287,36 +288,63 @@ body {
 .noscript-fallback a:hover { background: rgba(40,38,35,.05); }
 
 /* ============================================================
- * レスポンシブ対応（タブレット）
+ * レスポンシブ対応（タブレット：768px以下）
  * ============================================================ */
 @media (max-width: 768px) {
-  .top-page .top-content {
-    padding: 28px 24px;
+  /* --- グラデーション: 上部にも薄暗さを追加して文字の視認性を確保 --- */
+  .top-page .overlay-grad {
+    background: linear-gradient(
+      to bottom,
+      rgba(8,7,5,.45) 0%,
+      transparent 28%,
+      transparent 55%,
+      rgba(8,7,5,.7) 100%
+    );
   }
+
+  /* --- コンテンツ: 上下分散配置 --- */
+  .top-page .top-content {
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  /* --- ヘッダー（上部エリア）: ロゴ＋ナビ --- */
   .top-page .top-header {
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+    padding: 24px 20px;
+  }
+  .top-page .top-logo {
+    font-size: 20px;
+  }
+  .top-page .top-logo-sub {
+    font-size: 8px;
+    margin-top: 4px;
   }
   .top-page .top-nav {
     flex-wrap: wrap;
-    gap: 12px 20px;
+    gap: 10px 18px;
   }
   .top-page .top-nav a {
-    font-size: 12px;
-    letter-spacing: .15em;
+    font-size: 13px;
+    letter-spacing: .12em;
   }
-  /* タッチデバイス: hover ツールチップを無効化し、日本語を常時非表示 */
+  /* タッチデバイス: hover ツールチップを無効化 */
   .top-page .top-nav a .nav-jp {
     display: none;
   }
-  .top-page .top-tagline {
-    position: static;
-    font-size: 36px;
-  }
+
+  /* --- フッター（下部エリア）: タグライン＋戻るボタン --- */
   .top-page .top-footer {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 16px;
+    margin-top: auto;
+    padding: 20px 20px 28px;
+  }
+  .top-page .top-tagline {
+    position: static;
+    font-size: 32px;
   }
   .top-page .back-btn {
     font-size: 12px;
@@ -326,27 +354,28 @@ body {
 }
 
 /* ============================================================
- * レスポンシブ対応（スマートフォン）
+ * レスポンシブ対応（スマートフォン：480px以下）
  * ============================================================ */
 @media (max-width: 480px) {
-  .top-page .top-content {
+  .top-page .top-header {
     padding: 20px 16px;
+    gap: 12px;
   }
   .top-page .top-logo {
-    font-size: 18px;
-  }
-  .top-page .top-logo-sub {
-    font-size: 8px;
+    font-size: 17px;
   }
   .top-page .top-nav {
-    gap: 8px 16px;
+    gap: 8px 14px;
   }
   .top-page .top-nav a {
-    font-size: 11px;
-    letter-spacing: .1em;
+    font-size: 12px;
+    letter-spacing: .08em;
+  }
+  .top-page .top-footer {
+    padding: 16px 16px 24px;
   }
   .top-page .top-tagline {
-    font-size: 28px;
+    font-size: 26px;
     line-height: 1.5;
   }
   .top-page .back-btn {

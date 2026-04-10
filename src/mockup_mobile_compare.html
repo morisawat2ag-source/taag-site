@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>モバイルレイアウト比較モックアップ</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #222;
+  font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', sans-serif;
+  color: #fff;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: rgba(255,255,255,.7);
+  font-weight: 300;
+}
+.compare {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.phone {
+  width: 240px;
+  height: 480px;
+  border: 3px solid #555;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  background: #808080;
+  flex-shrink: 0;
+}
+.phone-label {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+.phone-label strong { color: #fff; }
+
+/* === 選択肢1: contain（現状の問題） === */
+.opt1 .photo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.opt1 .photo-inner {
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(135deg, #8B7355 0%, #A0926B 40%, #6B5B3F 100%);
+  position: relative;
+}
+.opt1 .photo-inner::after {
+  content: '📷 横長写真 (contain)';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: rgba(255,255,255,.5);
+}
+.opt1 .content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 12px;
+  background: rgba(0,0,0,.6);
+}
+.opt1 .nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.opt1 .nav-item {
+  font-size: 7px;
+  color: rgba(255,255,255,.6);
+  background: rgba(255,255,255,.1);
+  padding: 2px 5px;
+  border-radius: 2px;
+}
+.opt1 .tagline { font-size: 14px; font-style: italic; color: rgba(255,250,240,.9); }
+.opt1 .余白 {
+  position: absolute;
+  top: 8px; left: 8px;
+  font-size: 9px;
+  color: #f66;
+  background: rgba(255,0,0,.2);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.opt1 .余白b {
+  position: absolute;
+  bottom: 90px; left: 8px;
+  font-size: 9px;
+  color: #f66;
+  background: rgba(255,0,0,.2);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* === 選択肢2: cover（写真を画面いっぱいに） === */
+.opt2 .photo {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8B7355 0%, #A0926B 40%, #6B5B3F 100%);
+  position: relative;
+}
+.opt2 .photo::after {
+  content: '📷 横長写真 (cover)\a左右がトリミングされ\a画面いっぱいに表示';
+  white-space: pre;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  text-align: center;
+  color: rgba(255,255,255,.5);
+}
+.opt2 .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(8,7,5,.7) 100%);
+}
+.opt2 .content {
+  position: absolute;
+  bottom: 16px; left: 12px; right: 12px;
+}
+.opt2 .logo {
+  position: absolute;
+  top: 16px; left: 12px;
+  font-size: 11px;
+  color: rgba(255,250,240,.9);
+  font-weight: 600;
+}
+.opt2 .nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.opt2 .nav-item {
+  font-size: 8px;
+  color: rgba(255,255,255,.7);
+}
+.opt2 .tagline { font-size: 18px; font-style: italic; color: rgba(255,250,240,.9); line-height: 1.5; }
+.opt2 .btn { font-size: 8px; color: rgba(255,255,255,.4); margin-top: 12px; }
+
+/* === 選択肢3: cover + ナビを写真上にオーバーレイ === */
+.opt3 .photo {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8B7355 0%, #A0926B 40%, #6B5B3F 100%);
+  position: relative;
+}
+.opt3 .photo::after {
+  content: '📷 写真が全面背景';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: rgba(255,255,255,.3);
+}
+.opt3 .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(8,7,5,.4) 0%, transparent 30%, transparent 50%, rgba(8,7,5,.7) 100%);
+}
+.opt3 .header-area {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 20px 16px;
+}
+.opt3 .logo {
+  font-size: 13px;
+  color: rgba(255,250,240,.95);
+  font-weight: 600;
+  letter-spacing: .1em;
+  margin-bottom: 2px;
+}
+.opt3 .logo-sub {
+  font-size: 7px;
+  color: rgba(255,250,240,.5);
+  letter-spacing: .15em;
+  margin-bottom: 16px;
+}
+.opt3 .nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.opt3 .nav-item {
+  font-size: 10px;
+  color: rgba(255,250,240,.8);
+  letter-spacing: .1em;
+}
+.opt3 .footer-area {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 16px;
+}
+.opt3 .tagline {
+  font-size: 24px;
+  font-style: italic;
+  color: rgba(255,250,240,.92);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.opt3 .btn {
+  font-size: 9px;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .15em;
+}
+.opt3 .good {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 9px;
+  color: #6f6;
+  background: rgba(0,255,0,.15);
+  padding: 3px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<h1>TOPページ モバイル表示 比較モックアップ</h1>
+<div class="compare">
+
+  <!-- 選択肢1: contain（修正前の問題） -->
+  <div>
+    <div class="phone opt1">
+      <div class="photo">
+        <div class="photo-inner"></div>
+      </div>
+      <div class="content">
+        <div class="nav-row">
+          <span class="nav-item">ABOUT US</span>
+          <span class="nav-item">WORKS</span>
+          <span class="nav-item">WORK FLOW</span>
+          <span class="nav-item">RECRUIT</span>
+          <span class="nav-item">CONTACT</span>
+        </div>
+        <div class="tagline">空間が、<br>記憶になる<br>場所へ。</div>
+      </div>
+      <div class="余白">↕ 余白</div>
+      <div class="余白b">↕ 余白</div>
+    </div>
+    <div class="phone-label">❌ <strong>修正前</strong><br>contain → 上下に余白</div>
+  </div>
+
+  <!-- 選択肢2: coverのみ -->
+  <div>
+    <div class="phone opt2">
+      <div class="photo"></div>
+      <div class="overlay"></div>
+      <div class="logo">武田建築設計事務所</div>
+      <div class="content">
+        <div class="nav-row">
+          <span class="nav-item">ABOUT US</span>
+          <span class="nav-item">WORKS</span>
+          <span class="nav-item">WORK FLOW</span>
+          <span class="nav-item">RECRUIT</span>
+          <span class="nav-item">CONTACT</span>
+        </div>
+        <div class="tagline">空間が、<br>記憶になる<br>場所へ。</div>
+        <div class="btn">← ENTRANCE</div>
+      </div>
+    </div>
+    <div class="phone-label">△ <strong>cover のみ</strong><br>余白は解消、中央が空く</div>
+  </div>
+
+  <!-- 選択肢3: cover + 上下にオーバーレイ配置 -->
+  <div>
+    <div class="phone opt3">
+      <div class="photo"></div>
+      <div class="overlay"></div>
+      <div class="header-area">
+        <div class="logo">武田建築設計事務所</div>
+        <div class="logo-sub">TAKEDA ARCHITECT & ASSOCIATES</div>
+        <div class="nav-row">
+          <span class="nav-item">ABOUT US</span>
+          <span class="nav-item">WORKS</span>
+          <span class="nav-item">WORK FLOW</span>
+          <span class="nav-item">RECRUIT</span>
+          <span class="nav-item">CONTACT</span>
+        </div>
+      </div>
+      <div class="good">写真が見える領域</div>
+      <div class="footer-area">
+        <div class="tagline">空間が、<br>記憶になる<br>場所へ。</div>
+        <div class="btn">← ENTRANCE</div>
+      </div>
+    </div>
+    <div class="phone-label">✅ <strong>推奨: 上下オーバーレイ</strong><br>写真全面 + 要素を上下に分散</div>
+  </div>
+
+</div>
+</body>
+</html>
