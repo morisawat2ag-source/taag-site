@@ -294,14 +294,19 @@
   // ============================================================
   // ============================================================
   // 写真表示モード切替（開発用）
-  // デフォルト: cover（画面いっぱいにトリミング）
-  // ?photo=contain → 写真全体を表示（比較用）
+  // デフォルト: contain（写真全体を表示、上下はグレー）
+  // ?photo=cover → 画面いっぱいにトリミング（比較用）
   // ============================================================
   function applyPhotoMode() {
     var params = new URLSearchParams(location.search);
     var mode = params.get('photo');
-    if (mode === 'contain') {
-      document.getElementById('topPage').classList.add('photo-contain');
+    if (mode === 'cover') {
+      var tp = document.getElementById('topPage');
+      tp.style.background = '#808080';
+      var img = tp.querySelector('.bg-img');
+      if (img) {
+        img.style.objectFit = 'cover';
+      }
     }
   }
 
