@@ -8,6 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: hidden; }
 
 body {
   background: #f5f3f0;
@@ -17,7 +18,9 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   position: relative;
 }
@@ -94,7 +97,8 @@ body {
 .top-page .bg-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center center;
   filter: brightness(0.8);
 }
 .top-page .overlay-grad {
@@ -281,3 +285,72 @@ body {
   padding: 12px 28px;
 }
 .noscript-fallback a:hover { background: rgba(40,38,35,.05); }
+
+/* ============================================================
+ * レスポンシブ対応（タブレット）
+ * ============================================================ */
+@media (max-width: 768px) {
+  .top-page .top-content {
+    padding: 28px 24px;
+  }
+  .top-page .top-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .top-page .top-nav {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
+  .top-page .top-nav a {
+    font-size: 12px;
+    letter-spacing: .15em;
+  }
+  /* タッチデバイス: hover ツールチップを無効化し、日本語を常時非表示 */
+  .top-page .top-nav a .nav-jp {
+    display: none;
+  }
+  .top-page .top-tagline {
+    position: static;
+    font-size: 36px;
+  }
+  .top-page .top-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .top-page .back-btn {
+    font-size: 12px;
+    padding: 12px 0;
+    min-height: 44px;
+  }
+}
+
+/* ============================================================
+ * レスポンシブ対応（スマートフォン）
+ * ============================================================ */
+@media (max-width: 480px) {
+  .top-page .top-content {
+    padding: 20px 16px;
+  }
+  .top-page .top-logo {
+    font-size: 18px;
+  }
+  .top-page .top-logo-sub {
+    font-size: 8px;
+  }
+  .top-page .top-nav {
+    gap: 8px 16px;
+  }
+  .top-page .top-nav a {
+    font-size: 11px;
+    letter-spacing: .1em;
+  }
+  .top-page .top-tagline {
+    font-size: 28px;
+    line-height: 1.5;
+  }
+  .top-page .back-btn {
+    font-size: 11px;
+    min-height: 48px;
+  }
+}

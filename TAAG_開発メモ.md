@@ -1,5 +1,5 @@
 # TAAG サイト構築 開発メモ
-最終更新: 2026-04-09（ファイル構成更新、社長共有方針追記）
+最終更新: 2026-04-10（定期自動更新: ファイル構成に.gitattributes追記）
 
 ## ★コードレビュー報告ポリシー（恒久ルール）
 本プロジェクト内でClaudeがコードを生成・修正した際は、回答末尾に必ず以下を報告すること。
@@ -68,9 +68,11 @@ TAAGサイト構築/
 ├── taag_april_entrance_trim.html — 4月版（トリミング写真カバー）※モバイル調整未適用
 ├── taag_entrance_may.html      — 5月版エントランス（鯉のぼり＋緑樹）
 ├── about.html                  — About Usページ
+├── .gitattributes              — Git属性設定（改行コード等）
+├── .gitignore                  — Git追跡除外設定（マニュアル・スクショを公開対象外に）
 ├── CLAUDE.md                   — Claude向けプロジェクト起動指示（開発メモの読み込み指示等）
-├── 3.1_manual_210602.pdf       — フロンティアCMSマニュアル
-├── Screenshot_20260407-140557.png — 管理画面スクリーンショット
+├── 3.1_manual_210602.pdf       — フロンティアCMSマニュアル（※.gitignoreで除外、GitHub非公開）
+├── Screenshot_20260407-140557.png — 管理画面スクリーンショット（※.gitignoreで除外、GitHub非公開）
 └── TAAG_開発メモ.md            — 本ファイル
 ```
 ※モノリシック版HTMLファイル（taag_april_entrance.html等）は画像をBase64埋め込み済み（IMGESフォルダはローカル管理用）
@@ -146,18 +148,29 @@ TAAGサイト構築/
 - `src/` フォルダにCSS/JS/HTML分離構成のソース・オブ・トゥルースを配置
 - モノリシック版（taag_april_entrance.html等）は参照用として残す
 
-### 社長との共有・動作確認方法（2026-04-07検討中）
-以下の選択肢を検討し、**GitHub Pagesを採用する方向**で決定。
-ただしGit操作の学習を段階的に進める方針（選択肢B: 概念整理→事前準備→実作業）を選択。
+### 社長との共有・動作確認方法（2026-04-09確立）
+GitHub Pages を採用。セットアップ完了済み。
+
+- **GitHubリポジトリ**: https://github.com/morisawat2ag-source/taag-site （Public）
+- **GitHub Pages URL**: https://morisawat2ag-source.github.io/taag-site/
+- **エントランスページ確認URL**: https://morisawat2ag-source.github.io/taag-site/src/entrance.html
+- **ツール**: GitHub Desktop（GUI操作、コマンドライン不要）
 
 | フェーズ | 方法 | 目的 |
 |---|---|---|
-| 開発中の手元確認 | ローカルサーバー | 直美さんのスマホで素早く検証 |
-| 社長への随時共有 | GitHub Pages（無料・URL固定） | URL一本で社長レビュー |
+| 開発中のスマホ確認 | GitHub Pages URL | CSS/JS/画像の相対パスが正しく動作 |
+| 社長への随時共有 | 同上のURLをLINE等で送信 | URL固定なのでpush後は常に最新版が見える |
 | 仕様確定後の最終確認 | フロンティアCMS | 本番環境での挙動確認 |
 
-- 進捗: Git/GitHubの概念整理まで完了。Git本体のインストール手順に進む段階で中断中
-- 直美さんはGitHubアカウントを所持済み
+更新の日常フロー:
+1. ローカルでファイル編集
+2. GitHub Desktop で「Commit to main」（変更メモを添えて）
+3. 「Push origin」をクリック → 数分でGitHub Pages に反映
+
+注意事項:
+- `.gitignore` で `3.1_manual_210602.pdf`（フロンティアマニュアル）と `Screenshot_*.png` を除外済み
+- Publicリポジトリのため、パスワード・APIキー・個人情報を含むファイルはコミットしないこと
+- クラウドストレージ（Google Drive, BOX等）のプレビュー機能ではCSS/JS/画像の相対パスが動作しない → 必ずウェブサーバー経由（GitHub Pages等）で確認すること
 
 ## フロンティアCMS実装方針（2026-04-07確定）
 
@@ -190,7 +203,8 @@ TAAGサイト構築/
 - [ ] 画像（003_0773.jpg, yoshihito2.png）を「画像ファイル>新規追加」でアップロード→URL差し替え
 - [ ] フロンティアへソースを提示し、組み込みの対応可否・見積依頼
 - [ ] ブラウザ連携時のタブグループ運用手順整理（管理画面タブをClaudeのタブグループに含める必要あり）
-- [ ] Git本体のインストール → GitHub Pages セットアップ（概念整理済み、インストール手順から再開）
+- [x] Git本体のインストール → GitHub Pages セットアップ（2026-04-09完了）
+- [ ] src/entrance.html のスマホ最適化（レスポンシブ対応：メディアクエリ、フォントサイズ、SVGスケーリング等）
 
 ## 技術的な注意点
 - 各HTMLファイルは約400KB（SVGデータが大きい）
