@@ -192,6 +192,8 @@ body { background: #f5f3f0; }
   width: 85%;
   max-width: 480px;
   margin: 0 auto 48px;
+  margin-right: auto;
+  margin-left: calc(50% - 85% / 2 - 20px);
   padding: 12px;
   background: rgba(220,218,215,.5);
   border-radius: 16px 16px 4px 4px;
@@ -260,20 +262,19 @@ body { background: #f5f3f0; }
  * ============================================================ */
 @media (min-width: 769px) {
   .concept-inner {
-    display: flex;
-    align-items: flex-start;
-    gap: 48px;
+    display: block;
     padding: 0 48px;
+    max-width: 960px;
+    margin: 0 auto;
   }
   .concept-text {
-    flex: 1;
     padding: 0;
-    margin-bottom: 0;
+    margin-bottom: 48px;
   }
   .window-outer {
-    flex-shrink: 0;
-    width: 320px;
+    width: 380px;
     margin: 0;
+    margin-left: calc(50% - 380px / 2 - 40px);
   }
   .concept-lead {
     font-size: 28px;
@@ -281,6 +282,8 @@ body { background: #f5f3f0; }
   .slide-dots {
     margin-top: 16px;
     margin-bottom: 0;
+    justify-content: flex-start;
+    margin-left: calc(50% - 380px / 2 - 40px + 12px);
   }
 }
 </style>
@@ -307,9 +310,8 @@ body { background: #f5f3f0; }
     <div class="concept-text">
       <p class="concept-label">CONCEPT</p>
       <p class="concept-lead">
-        その場所にしかない<br>
-        光と記憶を、<br>
-        かたちにする。
+        たかが建物<br>
+        されど建物
       </p>
       <p class="concept-body">
         朝の光がキッチンに差し込む角度。風が抜ける窓の位置。季節ごとに変わる庭の景色。暮らしのなかで毎日触れるものだからこそ、建築には丁寧な思考が求められます。
