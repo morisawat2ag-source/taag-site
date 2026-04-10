@@ -330,27 +330,34 @@ body {
   padding: 80px 0;
   background: #e8e6e3;
 }
-
-/* --- コンセプトレイアウト: スマホ=縦積み（窓→テキスト） PC=横並び（テキスト左・窓右） --- */
-.concept-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.concept-inner {
+  position: relative;
+  padding: 0 28px;
 }
-.concept-body-area {
-  padding: 32px 28px 0;
+
+/* --- テキスト前半: 左上 --- */
+.concept-body-left {
+  margin-bottom: 40px;
+}
+/* --- テキスト後半: 窓の右下 --- */
+.concept-body-right {
+  margin-top: 32px;
 }
 .concept-body {
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 14px;
   font-weight: 300;
-  line-height: 2.2;
+  line-height: 2.0;
   letter-spacing: .04em;
   color: rgba(60,55,50,.7);
-  max-width: 540px;
 }
 .concept-body + .concept-body {
-  margin-top: 24px;
+  margin-top: 8px;
+}
+
+/* --- 画像窓ラッパー --- */
+.concept-window-wrap {
+  margin-bottom: 0;
 }
 
 /* --- コンセプト中央: 窓フレーム + スライドショー --- */
@@ -411,8 +418,8 @@ body {
 /* 窓の外枠（影で奥行き感） */
 .window-outer {
   position: relative;
-  width: 90%;
-  max-width: 600px;
+  width: 85%;
+  max-width: 520px;
   margin: 0 auto;
   padding: 12px;
   background: rgba(220,218,215,.5);
@@ -439,8 +446,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: -32px;
-  margin-bottom: 48px;
+  margin-top: 16px;
   position: relative;
   z-index: 3;
 }
@@ -556,14 +562,9 @@ body {
     min-height: 44px;
   }
 
-  /* --- コンセプトセクション モバイル: 窓中央→テキスト下 --- */
-  .concept-layout {
-    flex-direction: column;
-    align-items: center;
-  }
-  .window-outer {
-    width: 85%;
-    margin: 0 auto;
+  /* --- コンセプトセクション モバイル: 縦積み --- */
+  .concept-body-right {
+    text-align: left;
   }
 }
 
@@ -600,34 +601,55 @@ body {
 
 /* ============================================================
  * コンセプトセクション PC版レイアウト（769px以上）
+ * Grid配置: テキスト前半=左上、画像窓=中央〜左寄り（テキストに被さる）、
+ *           テキスト後半=画像窓の右下
  * ============================================================ */
 @media (min-width: 769px) {
   .concept {
     padding: 100px 0;
   }
   .concept-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 48px;
+    padding: 0 60px;
+    gap: 0;
   }
-  /* PC: テキスト左・窓右の横並び */
-  .concept-layout {
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    gap: 48px;
+
+  /* 左上: テキスト前半 */
+  .concept-body-left {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    padding-right: 40px;
+    margin-bottom: 0;
+    z-index: 1;
+  }
+
+  /* 中央〜左寄り: 画像窓 — 2列にまたがりつつ左寄せ */
+  .concept-window-wrap {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    margin-top: -40px;
+    padding-left: 8%;
   }
   .window-outer {
-    flex-shrink: 0;
     width: 480px;
     margin: 0;
   }
-  .concept-body-area {
-    flex: 1;
-    padding: 0;
-    min-width: 0;
-  }
   .slide-dots {
-    margin-top: 16px;
-    margin-bottom: 0;
+    justify-content: flex-start;
+    padding-left: 12px;
+  }
+
+  /* 右下: テキスト後半 — 画像窓の右下に配置 */
+  .concept-body-right {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    align-self: end;
+    padding-left: 20px;
+    margin-top: 0;
+    z-index: 2;
   }
 }
