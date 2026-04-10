@@ -601,41 +601,38 @@ body {
 
 /* ============================================================
  * コンセプトセクション PC版レイアウト（769px以上）
- * Grid配置: テキスト前半=左上、画像窓=中央〜左寄り（テキストに被さる）、
- *           テキスト後半=画像窓の右下
+ * テキスト前半=左上、画像窓=中央〜左寄り（最終行に少し被さる）、
+ * テキスト後半=画像窓の右下（窓に重ならない）
  * ============================================================ */
 @media (min-width: 769px) {
   .concept {
     padding: 100px 0;
   }
   .concept-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    max-width: 1100px;
+    position: relative;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 60px;
-    gap: 0;
   }
 
   /* 左上: テキスト前半 */
   .concept-body-left {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    padding-right: 40px;
+    max-width: 440px;
     margin-bottom: 0;
     z-index: 1;
+    position: relative;
   }
 
-  /* 中央〜左寄り: 画像窓 — 2列にまたがりつつ左寄せ */
+  /* 中央〜左寄り: 画像窓
+     margin-top負値で「風土を持っています。」の行に少し被さる */
   .concept-window-wrap {
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
-    margin-top: -40px;
-    padding-left: 8%;
+    margin-top: -20px;
+    padding-left: 5%;
+    position: relative;
+    z-index: 0;
   }
   .window-outer {
-    width: 480px;
+    width: 460px;
     margin: 0;
   }
   .slide-dots {
@@ -643,13 +640,13 @@ body {
     padding-left: 12px;
   }
 
-  /* 右下: テキスト後半 — 画像窓の右下に配置 */
+  /* 右下: テキスト後半 — 画像窓の下、右寄せ */
   .concept-body-right {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    align-self: end;
-    padding-left: 20px;
-    margin-top: 0;
+    margin-top: 32px;
+    margin-left: auto;
+    max-width: 440px;
+    text-align: left;
     z-index: 2;
+    position: relative;
   }
 }
