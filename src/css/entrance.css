@@ -294,27 +294,27 @@ body {
  *       ロゴ＋ナビを上部、タグライン＋ボタンを下部に分散配置。
  * ============================================================ */
 @media (max-width: 768px) {
-  /* --- 背景色を写真の上端・下端の色味に合わせる --- */
+  /* --- 背景: 暗色でシネマティックな印象に --- */
   .top-page {
-    background: #d0ccc8;
+    background: #1a1918;
   }
 
-  /* --- 写真: 横長比率を維持して中央に配置 --- */
+  /* --- 写真: 横長比率を維持しやや上寄りに配置 --- */
   .top-page .bg-img {
     object-fit: contain;
-    object-position: center center;
+    object-position: center 38%;
   }
 
-  /* --- グラデーション: 上下から写真に溶け込む暗がり --- */
+  /* --- グラデーション: 写真の上下端を暗闇に溶かす --- */
   .top-page .overlay-grad {
     background: linear-gradient(
       to bottom,
-      rgba(60,58,55,.92) 0%,
-      rgba(60,58,55,.55) 15%,
-      transparent 30%,
-      transparent 65%,
-      rgba(8,7,5,.55) 80%,
-      rgba(8,7,5,.88) 100%
+      rgba(26,25,24, 1) 0%,
+      rgba(26,25,24,.6) 18%,
+      transparent 32%,
+      transparent 62%,
+      rgba(26,25,24,.6) 78%,
+      rgba(26,25,24, 1) 100%
     );
   }
 
