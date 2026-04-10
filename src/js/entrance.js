@@ -305,11 +305,26 @@
     }
   }
 
+  // ============================================================
+  // コンセプトセクション: スライドドット同期
+  // ============================================================
+  function setupSlideDots() {
+    var dots = document.querySelectorAll('.slide-dots span');
+    if (!dots.length) return;
+    var current = 0;
+    setInterval(function () {
+      dots[current].classList.remove('active');
+      current = (current + 1) % dots.length;
+      dots[current].classList.add('active');
+    }, 4000); // 16s / 4枚 = 4s
+  }
+
   function init() {
     setupDate();
     setupPetals();
     bindPersonElements();
     applyPhotoMode();
+    setupSlideDots();
 
     // 初期姿勢（ドア手前）
     offsetX = START_OFFSET;

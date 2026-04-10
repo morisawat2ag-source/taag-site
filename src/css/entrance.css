@@ -5,7 +5,7 @@
  * フロンティア管理画面 [ページ単位 上級者設定 > 独自CSS] に転記する。
  * ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&family=Shippori+Mincho+B1:wght@400;600;800&family=Montserrat:wght@300;400;500&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { overflow-x: hidden; }
@@ -91,9 +91,19 @@ body {
   transition: opacity 1.2s;
   z-index: 100;
   background: #808080;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .top-page.show { opacity: 1; pointer-events: all; }
 
+/* --- ファーストビュー（写真ヒーロー） --- */
+.top-page .top-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
 .top-page .bg-img {
   width: 100%;
   height: 100%;
@@ -114,6 +124,24 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 40px 48px;
+}
+
+/* --- スクロールヒント --- */
+.top-page .scroll-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: rgba(255,250,240,.35);
+  z-index: 10;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%, 100% { opacity: .35; }
+  50% { opacity: .8; }
 }
 .top-page .top-header {
   display: flex;
@@ -204,7 +232,7 @@ body {
   align-items: flex-end;
 }
 .top-page .top-tagline {
-  position: fixed;
+  position: absolute;
   left: 48px;
   bottom: 80px;
   font-family: 'MS Gothic','Hiragino Kaku Gothic ProN','Yu Gothic', sans-serif;
@@ -286,6 +314,171 @@ body {
   padding: 12px 28px;
 }
 .noscript-fallback a:hover { background: rgba(40,38,35,.05); }
+
+/* ============================================================
+ * コンセプトセクション — 窓モチーフ
+ * ============================================================ */
+.concept {
+  padding: 80px 0;
+  background: #f5f3f0;
+}
+
+/* --- コンセプト上部: テキスト --- */
+.concept-text {
+  padding: 0 28px;
+  margin-bottom: 56px;
+}
+.concept-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .3em;
+  color: rgba(60,55,50,.4);
+  margin-bottom: 28px;
+}
+.concept-lead {
+  font-family: 'Shippori Mincho B1', serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 2.2;
+  color: rgba(40,38,35,.88);
+  margin-bottom: 36px;
+}
+.concept-body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 2.2;
+  letter-spacing: .04em;
+  color: rgba(60,55,50,.7);
+  max-width: 540px;
+}
+.concept-body + .concept-body {
+  margin-top: 24px;
+}
+
+/* --- コンセプト中央: 窓フレーム + スライドショー --- */
+.window-frame {
+  position: relative;
+  width: 85%;
+  max-width: 480px;
+  margin: 0 auto 48px;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px 12px 2px 2px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(40,38,35,.12),
+    inset 0 0 0 1px rgba(40,38,35,.06);
+}
+/* 窓の上部アーチ風 */
+.window-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: rgba(40,38,35,.08);
+  z-index: 2;
+}
+/* 窓の桟（さん）— 十字 */
+.window-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, transparent calc(50% - 1px), rgba(200,195,188,.7) calc(50% - 1px), rgba(200,195,188,.7) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(to bottom, transparent calc(45% - 1px), rgba(200,195,188,.7) calc(45% - 1px), rgba(200,195,188,.7) calc(45% + 1px), transparent calc(45% + 1px));
+}
+
+.window-slider {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  animation: windowSlide 16s ease-in-out infinite;
+}
+.window-slider img {
+  width: 25%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+@keyframes windowSlide {
+  0%, 22%   { transform: translateX(0); }
+  25%, 47%  { transform: translateX(-25%); }
+  50%, 72%  { transform: translateX(-50%); }
+  75%, 97%  { transform: translateX(-75%); }
+  100%      { transform: translateX(0); }
+}
+
+/* 窓の外枠（影で奥行き感） */
+.window-outer {
+  position: relative;
+  width: 85%;
+  max-width: 480px;
+  margin: 0 auto 48px;
+  margin-left: calc(50% - 85% / 2 - 20px);
+  padding: 12px;
+  background: rgba(220,218,215,.5);
+  border-radius: 16px 16px 4px 4px;
+  box-shadow: 0 2px 12px rgba(40,38,35,.08);
+}
+.window-outer .window-frame {
+  width: 100%;
+  margin: 0;
+}
+
+/* --- コンセプト下部: 署名 --- */
+.concept-signature {
+  padding: 0 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: rgba(60,55,50,.35);
+  text-align: right;
+}
+
+/* --- スライドインジケーター --- */
+.slide-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: -32px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 3;
+}
+.slide-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(40,38,35,.2);
+}
+.slide-dots span.active {
+  background: rgba(40,38,35,.5);
+}
+
+/* --- セパレーター（次セクションへの導線） --- */
+.separator {
+  text-align: center;
+  padding: 48px 28px;
+  background: #f5f3f0;
+}
+.separator a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: .25em;
+  color: rgba(40,38,35,.55);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(40,38,35,.2);
+  padding-bottom: 4px;
+  transition: all .3s;
+}
+.separator a:hover {
+  color: rgba(40,38,35,.9);
+  border-color: rgba(40,38,35,.6);
+}
 
 /* ============================================================
  * レスポンシブ対応（タブレット：768px以下）
@@ -408,5 +601,35 @@ body {
   .top-page .back-btn {
     font-size: 11px;
     min-height: 48px;
+  }
+}
+
+/* ============================================================
+ * コンセプトセクション PC版レイアウト（769px以上）
+ * ============================================================ */
+@media (min-width: 769px) {
+  .concept-inner {
+    display: block;
+    padding: 0 48px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .concept-text {
+    padding: 0;
+    margin-bottom: 48px;
+  }
+  .window-outer {
+    width: 380px;
+    margin: 0;
+    margin-left: calc(50% - 380px / 2 - 40px);
+  }
+  .concept-lead {
+    font-size: 28px;
+  }
+  .slide-dots {
+    margin-top: 16px;
+    margin-bottom: 0;
+    justify-content: flex-start;
+    margin-left: calc(50% - 380px / 2 - 40px + 12px);
   }
 }

@@ -242,26 +242,75 @@
 <div class="flash" id="flash"></div>
 
 <div class="top-page" id="topPage">
-  <img class="bg-img" src="../images/003_0773.jpg" alt="">
-  <div class="overlay-grad"></div>
-  <div class="top-content">
-    <div class="top-header">
-      <div>
-        <div class="top-logo">武田建築設計事務所</div>
-        <div class="top-logo-sub">TAKEDA ARCHITECT &amp; ASSOCIATES</div>
+  <!-- ファーストビュー（写真＋ロゴ＋タグライン） -->
+  <div class="top-hero">
+    <img class="bg-img" src="../images/003_0773.jpg" alt="">
+    <div class="overlay-grad"></div>
+    <div class="top-content">
+      <div class="top-header">
+        <div>
+          <div class="top-logo">武田建築設計事務所</div>
+          <div class="top-logo-sub">TAKEDA ARCHITECT &amp; ASSOCIATES</div>
+        </div>
+        <nav class="top-nav">
+          <a href="../about.html"><span class="nav-en">ABOUT US</span><span class="nav-jp">私たちについて</span></a>
+          <a href="/projects/"><span class="nav-en">WORKS</span><span class="nav-jp">実績紹介</span></a>
+          <a href="/flow/"><span class="nav-en">WORK FLOW</span><span class="nav-jp">依頼の流れ</span></a>
+          <a href="/recruit/"><span class="nav-en">RECRUIT</span><span class="nav-jp">採用情報</span></a>
+          <a href="/contact/"><span class="nav-en">CONTACT</span><span class="nav-jp">お問い合わせ</span></a>
+        </nav>
       </div>
-      <nav class="top-nav">
-        <a href="../about.html"><span class="nav-en">ABOUT US</span><span class="nav-jp">私たちについて</span></a>
-        <a href="/projects/"><span class="nav-en">WORKS</span><span class="nav-jp">実績紹介</span></a>
-        <a href="/flow/"><span class="nav-en">WORK FLOW</span><span class="nav-jp">依頼の流れ</span></a>
-        <a href="/recruit/"><span class="nav-en">RECRUIT</span><span class="nav-jp">採用情報</span></a>
-        <a href="/contact/"><span class="nav-en">CONTACT</span><span class="nav-jp">お問い合わせ</span></a>
-      </nav>
+      <div class="top-footer">
+        <div class="top-tagline"><span class="tag-line">空間が、</span><span class="tag-line"><span style="color:rgba(200,160,120,.95)">記憶</span>になる</span><span class="tag-line">場所へ。</span></div>
+        <button class="back-btn" onclick="goBack()">← ENTRANCE</button>
+      </div>
     </div>
-    <div class="top-footer">
-      <div class="top-tagline"><span class="tag-line">空間が、</span><span class="tag-line"><span style="color:rgba(200,160,120,.95)">記憶</span>になる</span><span class="tag-line">場所へ。</span></div>
-      <button class="back-btn" onclick="goBack()">← ENTRANCE</button>
+    <div class="scroll-hint">↓ SCROLL</div>
+  </div>
+
+  <!-- コンセプトセクション -->
+  <section class="concept" id="conceptSection">
+    <div class="concept-inner">
+      <div class="concept-text">
+        <p class="concept-label">CONCEPT</p>
+        <p class="concept-lead">
+          たかが建物<br>
+          されど建物
+        </p>
+        <p class="concept-body">
+          朝の光がキッチンに差し込む角度。風が抜ける窓の位置。季節ごとに変わる庭の景色。暮らしのなかで毎日触れるものだからこそ、建築には丁寧な思考が求められます。
+        </p>
+        <p class="concept-body">
+          武田建築設計事務所は、住まい手の暮らしと土地の声に耳を傾け、10年後に「ここで良かった」と思える空間を設計します。
+        </p>
+      </div>
+
+      <!-- 窓フレーム写真スライド -->
+      <div class="window-outer">
+        <div class="window-frame">
+          <div class="window-slider">
+            <img src="../images/003_0773.jpg" alt="" style="object-position: center center;">
+            <img src="../images/003_0773.jpg" alt="" style="object-position: left center;">
+            <img src="../images/003_0773.jpg" alt="" style="object-position: right center;">
+            <img src="../images/003_0773.jpg" alt="" style="object-position: center top;">
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="slide-dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <p class="concept-signature">— TAKEDA ARCHITECT &amp; ASSOCIATES</p>
+  </section>
+
+  <!-- 次セクションへの導線 -->
+  <div class="separator">
+    <a href="#">VIEW OUR WORKS →</a>
   </div>
 </div>
 
