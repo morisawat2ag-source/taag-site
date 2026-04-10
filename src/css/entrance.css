@@ -304,6 +304,17 @@ body {
     object-fit: contain;
     object-position: center 38%;
   }
+  /* --- ?photo=cover 時: トリミングして画面いっぱい --- */
+  .top-page.photo-cover .bg-img {
+    object-fit: cover;
+    object-position: center center;
+  }
+  .top-page.photo-cover {
+    background: #808080;
+  }
+  .top-page.photo-cover .overlay-grad {
+    background: linear-gradient(to bottom, transparent 40%, rgba(8,7,5,.7) 100%);
+  }
 
   /* --- グラデーション: 写真の上下端を暗闇に溶かす --- */
   .top-page .overlay-grad {

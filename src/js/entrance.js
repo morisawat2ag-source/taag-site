@@ -292,10 +292,24 @@
   // ============================================================
   // 起動
   // ============================================================
+  // ============================================================
+  // 写真表示モード切替（開発用）
+  // ?photo=cover  → 画面いっぱいにトリミング
+  // ?photo=contain → 写真全体を表示（デフォルト）
+  // ============================================================
+  function applyPhotoMode() {
+    var params = new URLSearchParams(location.search);
+    var mode = params.get('photo');
+    if (mode === 'cover') {
+      document.getElementById('topPage').classList.add('photo-cover');
+    }
+  }
+
   function init() {
     setupDate();
     setupPetals();
     bindPersonElements();
+    applyPhotoMode();
 
     // 初期姿勢（ドア手前）
     offsetX = START_OFFSET;
