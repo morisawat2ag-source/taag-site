@@ -337,13 +337,25 @@ body {
   margin-bottom: 28px;
 }
 .concept-lead {
-  font-family: 'Shippori Mincho B1', serif;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: .1em;
-  line-height: 2.2;
+  font-family: 'MS Gothic','Hiragino Kaku Gothic ProN','Yu Gothic', sans-serif;
+  font-size: 57px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: .06em;
+  line-height: 1.4;
   color: rgba(40,38,35,.88);
-  margin-bottom: 36px;
+  margin-bottom: 0;
+}
+
+/* --- 窓+本文のオーバーラップエリア --- */
+.concept-window-area {
+  position: relative;
+}
+.concept-body-overlay {
+  position: relative;
+  margin-top: -60px;
+  padding: 0 28px;
+  z-index: 4;
 }
 .concept-body {
   font-family: 'Noto Sans JP', sans-serif;
@@ -394,21 +406,22 @@ body {
 
 .window-slider {
   display: flex;
-  width: 400%;
+  width: 500%;
   height: 100%;
-  animation: windowSlide 16s ease-in-out infinite;
+  animation: windowSlide 20s ease-in-out infinite;
 }
 .window-slider img {
-  width: 25%;
+  width: 20%;
   height: 100%;
   object-fit: cover;
   flex-shrink: 0;
 }
 @keyframes windowSlide {
-  0%, 22%   { transform: translateX(0); }
-  25%, 47%  { transform: translateX(-25%); }
-  50%, 72%  { transform: translateX(-50%); }
-  75%, 97%  { transform: translateX(-75%); }
+  0%, 17%   { transform: translateX(0); }
+  20%, 37%  { transform: translateX(-20%); }
+  40%, 57%  { transform: translateX(-40%); }
+  60%, 77%  { transform: translateX(-60%); }
+  80%, 97%  { transform: translateX(-80%); }
   100%      { transform: translateX(0); }
 }
 
@@ -492,21 +505,13 @@ body {
     background: #d0ccc8;
   }
 
-  /* --- 写真: 横長比率を維持しやや上寄りに配置 --- */
-  .top-page .bg-img {
+  /* --- 写真: デフォルトcover、?photo=contain で全体表示に切替可 --- */
+  .top-page.photo-contain .bg-img {
     object-fit: contain;
     object-position: center 38%;
   }
-  /* --- ?photo=cover 時: トリミングして画面いっぱい --- */
-  .top-page.photo-cover .bg-img {
-    object-fit: cover;
-    object-position: center center;
-  }
-  .top-page.photo-cover {
-    background: #808080;
-  }
-  .top-page.photo-cover .overlay-grad {
-    background: linear-gradient(to bottom, transparent 40%, rgba(8,7,5,.7) 100%);
+  .top-page.photo-contain {
+    background: #d0ccc8;
   }
 
   /* --- グラデーション: 上部も暗くしてロゴ・ナビの視認性確保、下部はタグライン用 --- */
@@ -571,6 +576,14 @@ body {
     padding: 12px 0;
     min-height: 44px;
   }
+
+  /* --- コンセプトセクション モバイル調整 --- */
+  .concept-lead {
+    font-size: 32px;
+  }
+  .concept-body-overlay {
+    margin-top: -40px;
+  }
 }
 
 /* ============================================================
@@ -618,13 +631,18 @@ body {
     padding: 0;
     margin-bottom: 48px;
   }
+  .concept-lead {
+    font-size: 57px;
+  }
   .window-outer {
     width: 380px;
     margin: 0;
     margin-left: calc(50% - 380px / 2 - 40px);
   }
-  .concept-lead {
-    font-size: 28px;
+  .concept-body-overlay {
+    margin-top: -80px;
+    padding: 0;
+    max-width: 480px;
   }
   .slide-dots {
     margin-top: 16px;

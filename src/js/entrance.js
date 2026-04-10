@@ -294,14 +294,14 @@
   // ============================================================
   // ============================================================
   // 写真表示モード切替（開発用）
-  // ?photo=cover  → 画面いっぱいにトリミング
-  // ?photo=contain → 写真全体を表示（デフォルト）
+  // デフォルト: cover（画面いっぱいにトリミング）
+  // ?photo=contain → 写真全体を表示（比較用）
   // ============================================================
   function applyPhotoMode() {
     var params = new URLSearchParams(location.search);
     var mode = params.get('photo');
-    if (mode === 'cover') {
-      document.getElementById('topPage').classList.add('photo-cover');
+    if (mode === 'contain') {
+      document.getElementById('topPage').classList.add('photo-contain');
     }
   }
 
@@ -316,7 +316,7 @@
       dots[current].classList.remove('active');
       current = (current + 1) % dots.length;
       dots[current].classList.add('active');
-    }, 4000); // 16s / 4枚 = 4s
+    }, 4000); // 20s / 5枚 = 4s
   }
 
   function init() {
@@ -328,12 +328,17 @@
 
     // 初期姿勢（ドア手前）
     offsetX = START_OFFSET;
-    drawWalkPose(0);
+    try {
+      drawWalkPose(0);
+    } catch (e) {
+      // SVG要素が見つからない場合も安全に続行
+    }
 
     if (hasEntered()) {
       // 既にエントランス通過済み → 演出スキップしてトップを直接表示
       document.getElementById('topPage').classList.add('show');
-      document.getElementById('mainsvg').style.display = 'none';
+      var svg = document.getElementById('mainsvg');
+      if (svg) svg.style.display = 'none';
     } else {
       // 初回 → 通常の演出開始
       setTimeout(startAnim, 3700);
