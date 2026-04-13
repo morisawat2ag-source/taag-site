@@ -1,5 +1,5 @@
 # TAAG サイト構築 開発メモ
-最終更新: 2026-04-10（定期自動更新: ファイル構成に.gitattributes追記）
+最終更新: 2026-04-13（定期自動更新②: ファイル構成・セッション状態を再確認、差分なし。OUR WORKS実装は次回セッション待ち）
 
 ## ★コードレビュー報告ポリシー（恒久ルール）
 本プロジェクト内でClaudeがコードを生成・修正した際は、回答末尾に必ず以下を報告すること。
@@ -55,15 +55,26 @@
 ## ファイル構成
 ```
 TAAGサイト構築/
-├── images/
-│   ├── 003_0773.jpg            — トップページ背景写真
+├── images/                     — サイト用写真素材
+│   ├── 001_0770.jpg 〜 015_0950.jpg  — 建築写真15枚（003_0773.jpgをトップ背景に使用中）
+│   ├── trim_007_0855.jpg       — 007をトリミング加工した版
 │   └── yoshihito2.png          — プロフィール写真
+├── ourworks_photos/            — OUR WORKS用施工例写真（2026-04-10追加）
+│   ├── AR ANNEX/               — 商業・オフィス（Web&PreviewとHighResolutionの2セット）
+│   ├── LeMon/                  — オフィス・ワークスペース（63枚）
+│   ├── 新丸子東1丁目計画/      — 集合住宅（25枚）
+│   ├── 東京西徳洲会病院 1F薬局改修工事/ — 医療施設改修（25枚＋竣工写真PDF）
+│   ├── 森邸/                   — 個人住宅（24枚）
+│   └── 長沢1丁目pj/            — 商業施設（採用15カット＋不採用25枚）
 ├── src/                        — ソース・オブ・トゥルース（CSS/JS/HTML分離構成）★CMS移行向け
 │   ├── css/
 │   │   └── entrance.css        — エントランスページ用CSS
 │   ├── js/
 │   │   └── entrance.js         — エントランスページ用JS
-│   └── entrance.html           — エントランスページHTML（CSS/JS外部参照版）
+│   ├── entrance.html           — エントランスページHTML（CSS/JS外部参照版）
+│   ├── mockup_concept_layouts.html — コンセプト画面レイアウト検討用モックアップ（2026-04-10）
+│   ├── mockup_concept_window.html  — コンセプト画面「窓」UI検討用モックアップ（2026-04-10）
+│   └── mockup_mobile_compare.html  — モバイル表示比較用モックアップ（2026-04-10）
 ├── taag_april_entrance.html    — 4月版エントランス（桜）モノリシック旧版・参照用
 ├── taag_april_entrance_trim.html — 4月版（トリミング写真カバー）※モバイル調整未適用
 ├── taag_entrance_may.html      — 5月版エントランス（鯉のぼり＋緑樹）
@@ -77,6 +88,7 @@ TAAGサイト構築/
 ```
 ※モノリシック版HTMLファイル（taag_april_entrance.html等）は画像をBase64埋め込み済み（IMGESフォルダはローカル管理用）
 ※`src/` 配下はCSS/JS/HTML分離構成で、CMS上級者設定への貼り付けやGitHub Pages配信に適した形式
+※`ourworks_photos/` はGitHub非公開にするか要確認（容量大・個人情報含む可能性）
 
 ## 設計方針
 
@@ -126,8 +138,33 @@ TAAGサイト構築/
 
 ## トップページ
 - 背景: 003_0773.jpg（建築写真）、brightness(0.8)
-- タグライン: slideInBounceアニメーション
+- タグライン: slideInBounceアニメーション（フォント: 'MS Gothic','Hiragino Kaku Gothic ProN','Yu Gothic', sans-serif）
 - ナビゲーション: ABOUT US → about.html
+
+## コンセプト画面（2026-04-10開発）
+- `src/mockup_concept_layouts.html` / `mockup_concept_window.html` で検討済み
+- 背景色: PC版 `#dddad6`（スマホ版 `#e8e6e3`）
+- レイアウト: テキスト左寄せ（`.concept-body-left`）、画像窓右寄せ（`margin-left: auto`）
+- 「朝の光が…」テキストとフォトウィンドウを左右に明確分離
+- 署名（`.concept-signature`）は `margin-top: 48px` で下に配置
+- コンセプト画面の縦サイズ = トップ画面と同じ `100dvh`（`display: flex; justify-content: center`）
+- ドットナビは画像窓と同じ右揃え
+
+## OUR WORKSページ（2026-04-10着手）
+- 施工例6物件の写真を `ourworks_photos/` に整理済み（各フォルダに5枚程度を選定予定）
+- 参照デザイン: https://www.acra-a.com/works/（グリッドカードレイアウト）
+- レイアウト方針: 大きな写真カード＋物件名＋カテゴリのグリッド表示
+- ※セッション（TAAGサイト構築）内で写真選定のAgentコール中にセッション終了。`ourworks.html` は未作成。次回セッションで改めて実装着手が必要。
+
+### 施工例一覧（確定）
+| 物件名 | 種別 | 概要 | 写真フォルダ |
+|---|---|---|---|
+| 長沢1丁目pj | 商業施設 | 水辺のカフェ・ウォータースポーツ施設。コンテナ風モダン建築 | 採用15カット/ |
+| AR ANNEX | 商業・オフィス | モダンガラスファサードの店舗ビル。ミニマルオフィス内装 | Web&Preview/ |
+| LeMon | オフィス・ワークスペース | すりガラス＋木枠パーティション、ビオフィリックデザイン | LeMon/ |
+| 新丸子東1丁目計画 | 集合住宅 | ダークブリック外装、曲線コーナー、ロフト付き住戸 | 新丸子東1丁目計画/ |
+| 東京西徳洲会病院 1F薬局改修工事 | 医療施設改修 | 木目調カウンター、スカイライト天井の薬局 | 東京西徳洲会病院.../ |
+| 森邸 | 個人住宅 | 狭小地モダン住宅。白い金属サイディング、打ちっぱなし内装 | 森邸/ |
 
 ## About Usページ
 - ヘッダー/ナビ固定
@@ -205,6 +242,10 @@ GitHub Pages を採用。セットアップ完了済み。
 - [ ] ブラウザ連携時のタブグループ運用手順整理（管理画面タブをClaudeのタブグループに含める必要あり）
 - [x] Git本体のインストール → GitHub Pages セットアップ（2026-04-09完了）
 - [ ] src/entrance.html のスマホ最適化（レスポンシブ対応：メディアクエリ、フォントサイズ、SVGスケーリング等）
+- [ ] OUR WORKSページ（ourworks.html）の実装（グリッドカードレイアウト、各物件5枚程度）
+- [ ] ourworks_photos/ の .gitignore 追加要否の確認（容量・個人情報の観点）
+- [ ] コンセプト画面（concept セクション）をsrc/配下のHTMLに統合
+- [ ] mockup_concept_*.html の内容を本番ファイルに反映・整理後削除
 
 ## 技術的な注意点
 - 各HTMLファイルは約400KB（SVGデータが大きい）

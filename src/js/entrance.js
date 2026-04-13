@@ -321,12 +321,12 @@
       dots[current].classList.remove('active');
       current = (current + 1) % dots.length;
       dots[current].classList.add('active');
-    }, 4000); // 20s / 5枚 = 4s
+    }, 4800); // 24s / 5枚 = 4.8s
   }
 
   function init() {
     setupDate();
-    setupPetals();
+    // setupPetals(); // 4月版: 桜吹雪なし
     bindPersonElements();
     applyPhotoMode();
     setupSlideDots();

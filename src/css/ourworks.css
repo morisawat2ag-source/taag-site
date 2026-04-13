@@ -1,0 +1,285 @@
+@charset "UTF-8";
+/* ============================================================
+ * TAAG OUR WORKS Page Stylesheet
+ * ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: hidden; }
+
+body {
+  background: #f5f3f0;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: rgba(40,38,35,.85);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+ * ヘッダー
+ * ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,243,240,.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(40,38,35,.08);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-logo {
+  font-family: 'Klee One', cursive;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: rgba(40,38,35,.9);
+  text-decoration: none;
+}
+.header-logo:hover {
+  color: rgba(40,38,35,1);
+}
+.header-logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: .2em;
+  color: rgba(40,38,35,.45);
+  margin-top: 4px;
+}
+.header-nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.header-nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .2em;
+  color: rgba(40,38,35,.55);
+  text-decoration: none;
+  transition: color .2s;
+}
+.header-nav a:hover,
+.header-nav a.current {
+  color: rgba(40,38,35,.95);
+}
+
+/* ============================================================
+ * ページタイトル（ヒーロー）
+ * ============================================================ */
+.works-hero {
+  padding: 80px 40px 60px;
+  text-align: center;
+  background: #eae8e5;
+}
+.works-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: .3em;
+  color: rgba(40,38,35,.85);
+}
+.works-subtitle {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .15em;
+  color: rgba(40,38,35,.45);
+  margin-top: 12px;
+}
+
+/* ============================================================
+ * プロジェクトグリッド
+ * ============================================================ */
+.works-grid-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px 80px;
+}
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/* --- カード --- */
+.works-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.works-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(40,38,35,.12);
+}
+
+/* --- カード画像 --- */
+.card-img {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #dddad6;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.works-card:hover .card-img img {
+  transform: scale(1.04);
+}
+/* ホバー時の暗めオーバーレイ */
+.card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(40,38,35,0);
+  transition: background .3s ease;
+}
+.works-card:hover .card-img::after {
+  background: rgba(40,38,35,.08);
+}
+
+/* --- カード情報 --- */
+.card-info {
+  padding: 20px 4px 8px;
+}
+.card-category {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: rgba(40,38,35,.45);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: rgba(40,38,35,.88);
+  line-height: 1.5;
+}
+.card-title-sub {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(40,38,35,.6);
+  margin-top: 2px;
+}
+.card-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(40,38,35,.5);
+  margin-top: 6px;
+  letter-spacing: .02em;
+}
+
+/* ============================================================
+ * フッター
+ * ============================================================ */
+.site-footer {
+  background: rgba(40,38,35,.95);
+  padding: 48px 40px;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .25em;
+  color: rgba(255,250,240,.6);
+}
+.footer-copy {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px;
+  color: rgba(255,250,240,.3);
+  margin-top: 12px;
+}
+
+/* ============================================================
+ * レスポンシブ：タブレット（768px以下）
+ * ============================================================ */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+  .header-nav {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    justify-content: center;
+  }
+  .header-nav a {
+    font-size: 11px;
+  }
+
+  .works-hero {
+    padding: 60px 20px 40px;
+  }
+  .works-title {
+    font-size: 28px;
+  }
+
+  .works-grid-wrap {
+    padding: 40px 20px 60px;
+  }
+  .works-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* ============================================================
+ * レスポンシブ：スマートフォン（480px以下）
+ * ============================================================ */
+@media (max-width: 480px) {
+  .header-logo {
+    font-size: 17px;
+  }
+  .header-nav {
+    gap: 8px 12px;
+  }
+  .header-nav a {
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+
+  .works-hero {
+    padding: 48px 16px 32px;
+  }
+  .works-title {
+    font-size: 24px;
+    letter-spacing: .2em;
+  }
+
+  .works-grid-wrap {
+    padding: 28px 16px 48px;
+  }
+  .works-grid {
+    gap: 24px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .site-footer {
+    padding: 36px 20px;
+  }
+}

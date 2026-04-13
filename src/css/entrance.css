@@ -394,25 +394,29 @@ body {
     linear-gradient(to bottom, transparent calc(50% - 1px), rgba(200,195,188,.7) calc(50% - 1px), rgba(200,195,188,.7) calc(50% + 1px), transparent calc(50% + 1px));
 }
 
+/* 6枚（5枚+ループ用コピー1枚）でシームレスループ */
 .window-slider {
   display: flex;
-  width: 500%;
+  width: 600%;  /* 6枚分 */
   height: 100%;
-  animation: windowSlide 20s ease-in-out infinite;
+  animation: windowSlide 24s ease-in-out infinite;
 }
 .window-slider img {
-  width: 20%;
+  width: calc(100% / 6);
   height: 100%;
   object-fit: cover;
   flex-shrink: 0;
 }
+/* 各枚 4s 表示: 3.33%スライド + 13.67%静止 = 16.67%サイクル
+   5枚目→6枚目(=1枚目コピー)でスライド後、瞬時に先頭へ戻す */
 @keyframes windowSlide {
-  0%, 17%   { transform: translateX(0); }
-  20%, 37%  { transform: translateX(-20%); }
-  40%, 57%  { transform: translateX(-40%); }
-  60%, 77%  { transform: translateX(-60%); }
-  80%, 97%  { transform: translateX(-80%); }
-  100%      { transform: translateX(0); }
+  0%, 14.5%      { transform: translateX(0); }
+  16.67%, 31.17% { transform: translateX(calc(-100% / 6)); }
+  33.33%, 47.83% { transform: translateX(calc(-200% / 6)); }
+  50%, 64.5%     { transform: translateX(calc(-300% / 6)); }
+  66.67%, 81.17% { transform: translateX(calc(-400% / 6)); }
+  83.33%, 99.99% { transform: translateX(calc(-500% / 6)); }
+  100%           { transform: translateX(0); }
 }
 
 /* 窓の外枠（影で奥行き感） */
@@ -489,6 +493,16 @@ body {
  *       ロゴ＋ナビを上部、タグライン＋ボタンを下部に分散配置。
  * ============================================================ */
 @media (max-width: 768px) {
+  /* --- エントランスSVG: スマホ縦長対応 ---
+     横長SVGを縦長画面でも見やすく。
+     幅をやや縮小し、上下中央配置のまま図面を大きめに保つ */
+  #mainsvg {
+    max-height: 60vh;
+    width: auto;
+    max-width: 100%;
+    margin: auto;
+  }
+
   /* --- 背景: 写真端の色味に合わせたグレー --- */
   .top-page {
     background: #d0ccc8;
