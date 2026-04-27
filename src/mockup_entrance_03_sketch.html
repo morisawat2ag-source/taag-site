@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>③ HAND SKETCH — TAAG mockup</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Montserrat:wght@300;400&family=Shippori+Mincho+B1:wght@400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{
+  background:#f7f3ea;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(120,90,60,.04) 0px,rgba(120,90,60,.04) 1px,transparent 1px,transparent 32px),
+    repeating-linear-gradient(90deg,rgba(120,90,60,.03) 0px,rgba(120,90,60,.03) 1px,transparent 1px,transparent 32px);
+  font-family:'Klee One',sans-serif;
+  color:rgba(60,45,30,.85);
+  min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;gap:8px;overflow:hidden;
+}
+.title{font-family:'Shippori Mincho B1',serif;font-size:13px;letter-spacing:.35em;opacity:.65}
+.desc{font-size:11px;letter-spacing:.18em;opacity:.55}
+.svgwrap{width:min(100%,920px);position:relative;cursor:pointer}
+svg{width:100%;height:auto;display:block}
+.replay{margin-top:6px;background:transparent;border:1px solid rgba(60,45,30,.4);padding:8px 22px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.28em;color:rgba(60,45,30,.65);cursor:pointer}
+.replay:hover{background:rgba(60,45,30,.05)}
+.tolink{margin-top:4px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.28em;color:rgba(60,45,30,.5);text-decoration:none}
+.tolink:hover{color:rgba(60,45,30,.85)}
+
+.sk{
+  fill:none;
+  stroke:rgba(60,45,30,.78);
+  stroke-linecap:round;stroke-linejoin:round;
+  filter:url(#rough);
+  stroke-dasharray:var(--len,500);
+  stroke-dashoffset:var(--len,500);
+  animation:drawIn 1.4s cubic-bezier(.4,.1,.3,1) forwards;
+}
+@keyframes drawIn{to{stroke-dashoffset:0}}
+
+.sk-soft{stroke:rgba(80,60,40,.4);stroke-width:.9}
+.sk-mid{stroke:rgba(60,45,30,.7);stroke-width:1.4}
+.sk-bold{stroke:rgba(40,30,20,.85);stroke-width:2.0}
+
+.fill-leaf{fill:rgba(140,170,100,.5);opacity:0;animation:fadeIn 1.2s ease forwards}
+.fill-warm{fill:rgba(255,210,140,.42);opacity:0;animation:fadeIn 1.5s ease forwards}
+.fill-glass{fill:rgba(180,200,210,.35);opacity:0;animation:fadeIn 1.2s ease forwards}
+@keyframes fadeIn{to{opacity:1}}
+
+.txt-hand{
+  font-family:'Klee One',sans-serif;font-weight:600;
+  fill:rgba(60,45,30,.7);opacity:0;
+  animation:fadeIn 1.2s ease forwards;
+}
+
+.t1{animation-delay:.2s}.t2{animation-delay:.5s}.t3{animation-delay:.9s}
+.t4{animation-delay:1.4s}.t5{animation-delay:1.9s}.t6{animation-delay:2.4s}
+.t7{animation-delay:2.9s}.t8{animation-delay:3.4s}.t9{animation-delay:3.9s}
+.t10{animation-delay:4.4s}.t11{animation-delay:4.9s}.t12{animation-delay:5.4s}
+</style>
+</head>
+<body>
+
+<div class="title">③ HAND SKETCH</div>
+<div class="desc">スケッチブックに描かれていく、オフィスビルの輪郭</div>
+
+<div class="svgwrap" onclick="replay()">
+<svg id="svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+
+  <!-- 地面 -->
+  <path d="M 60 380 C 200 378, 380 383, 540 379 S 720 381, 760 380"
+        class="sk sk-soft t1" style="--len:720"/>
+
+  <!-- 樹木（左、街路樹風） -->
+  <path d="M 130 380 Q 132 320 128 270 Q 126 240 130 215" class="sk sk-mid t2" style="--len:170"/>
+  <path d="M 128 270 Q 110 250 100 235" class="sk sk-mid t3" style="--len:50"/>
+  <path d="M 130 240 Q 150 230 160 215" class="sk sk-mid t3" style="--len:50"/>
+  <ellipse cx="125" cy="200" rx="36" ry="30" class="sk sk-soft t4" style="--len:210;stroke-width:1"/>
+  <ellipse cx="155" cy="190" rx="24" ry="20" class="sk sk-soft t5" style="--len:140;stroke-width:1"/>
+  <ellipse cx="100" cy="215" rx="20" ry="16" class="sk sk-soft t5" style="--len:115;stroke-width:1"/>
+  <ellipse cx="125" cy="200" rx="36" ry="30" class="fill-leaf t9"/>
+  <ellipse cx="155" cy="190" rx="24" ry="20" class="fill-leaf t9"/>
+  <ellipse cx="100" cy="215" rx="20" ry="16" class="fill-leaf t9"/>
+
+  <!-- ===== オフィスビル本体（4階建てのフラット屋根、箱形）===== -->
+  <!-- 外形 -->
+  <path d="M 280 380 L 280 145" class="sk sk-bold t3" style="--len:235"/>
+  <path d="M 280 145 L 540 145" class="sk sk-bold t4" style="--len:260"/>
+  <path d="M 540 145 L 540 380" class="sk sk-bold t5" style="--len:235"/>
+  <path d="M 280 380 L 540 380" class="sk sk-bold t6" style="--len:260"/>
+  <!-- パラペット（屋根上の縁取り） -->
+  <path d="M 275 138 L 545 138 L 545 145 L 275 145 Z" class="sk sk-mid t6" style="--len:550"/>
+  <!-- 床ライン（フロア境界、軽い線） -->
+  <path d="M 280 200 L 540 200" class="sk sk-soft t7" style="--len:260"/>
+  <path d="M 280 258 L 540 258" class="sk sk-soft t7" style="--len:260"/>
+  <path d="M 280 316 L 540 316" class="sk sk-soft t7" style="--len:260"/>
+
+  <!-- 窓: 各階1本のストリップ窓（3階分） -->
+  <path d="M 295 158 L 525 158 L 525 192 L 295 192 Z" class="sk sk-mid t7" style="--len:528"/>
+  <path d="M 295 216 L 525 216 L 525 250 L 295 250 Z" class="sk sk-mid t8" style="--len:528"/>
+  <path d="M 295 274 L 525 274 L 525 308 L 295 308 Z" class="sk sk-mid t8" style="--len:528"/>
+
+  <!-- 窓に灯り（夕方の事務所） -->
+  <rect x="295" y="158" width="230" height="34" class="fill-warm t11"/>
+  <rect x="295" y="216" width="230" height="34" class="fill-warm t11"/>
+  <rect x="295" y="274" width="230" height="34" class="fill-warm t11"/>
+
+  <!-- 1F：エントランス（ガラスファサード + 自動ドア） -->
+  <path d="M 295 332 L 525 332 L 525 380" class="sk sk-mid t9" style="--len:280"/>
+  <path d="M 295 332 L 295 380" class="sk sk-soft t9" style="--len:48"/>
+  <path d="M 365 332 L 365 380" class="sk sk-soft t9" style="--len:48"/>
+  <path d="M 455 332 L 455 380" class="sk sk-soft t9" style="--len:48"/>
+  <!-- 自動ドア（中央2枚） -->
+  <path d="M 395 332 L 395 380" class="sk sk-soft t9" style="--len:48"/>
+  <path d="M 425 332 L 425 380" class="sk sk-soft t9" style="--len:48"/>
+  <!-- 1Fガラスの淡い色 -->
+  <rect x="295" y="332" width="230" height="48" class="fill-glass t9"/>
+  <!-- キャノピー（庇） -->
+  <path d="M 380 326 L 440 326 L 440 332 L 380 332 Z" class="sk sk-mid t9" style="--len:130"/>
+
+  <!-- 空（雲・太陽） -->
+  <circle cx="660" cy="120" r="22" class="sk sk-mid t2" style="--len:140"/>
+  <path d="M 660 88 L 660 80" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 660 152 L 660 160" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 628 120 L 620 120" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 692 120 L 700 120" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 638 98 L 632 92" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 682 98 L 688 92" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 638 142 L 632 148" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 682 142 L 688 148" class="sk sk-soft t3" style="--len:9"/>
+  <path d="M 160 100 q -10 -16 10 -22 q 4 -14 22 -10 q 12 -10 26 0 q 18 -2 14 14 q 16 6 4 18 z"
+        class="sk sk-soft t1" style="--len:220;stroke-width:1"/>
+  <path d="M 600 70 q -8 -14 8 -18 q 4 -12 20 -8 q 10 -8 22 2 q 16 0 12 14 z"
+        class="sk sk-soft t2" style="--len:170;stroke-width:1"/>
+
+  <!-- 通行人（オフィス前を歩く人、シンプル棒人間 + ビジネスバッグ） -->
+  <circle cx="220" cy="320" r="9" class="sk sk-mid t10" style="--len:60"/>
+  <path d="M 220 329 L 220 370" class="sk sk-mid t10" style="--len:42"/>
+  <path d="M 220 340 L 205 358" class="sk sk-mid t10" style="--len:24"/>
+  <path d="M 220 340 L 235 355" class="sk sk-mid t10" style="--len:23"/>
+  <!-- バッグ（手にぶら下げる） -->
+  <path d="M 232 358 L 232 372 L 244 372 L 244 358 Z" class="sk sk-soft t10" style="--len:54"/>
+  <path d="M 220 370 L 210 380" class="sk sk-mid t10" style="--len:14"/>
+  <path d="M 220 370 L 230 380" class="sk sk-mid t10" style="--len:14"/>
+
+  <!-- 散らした注釈 -->
+  <text x="115" y="100" class="txt-hand t8" style="font-size:13px;letter-spacing:.05em">街路樹</text>
+  <path d="M 110 105 Q 120 115 128 110" class="sk sk-soft t8" style="--len:25;stroke-width:.7"/>
+
+  <text x="660" y="170" class="txt-hand t9" style="font-size:13px;letter-spacing:.05em;text-anchor:middle">south light</text>
+  <path d="M 660 175 Q 665 130 660 125" class="sk sk-soft t9" style="--len:55;stroke-width:.7"/>
+
+  <text x="410" y="125" class="txt-hand t10" style="font-size:11px;letter-spacing:.08em;text-anchor:middle">— OFFICE  4F —</text>
+
+  <text x="600" y="350" class="txt-hand t11" style="font-size:11px;letter-spacing:.05em;text-anchor:middle">curtain wall</text>
+  <path d="M 600 348 Q 575 340 540 332" class="sk sk-soft t11" style="--len:65;stroke-width:.7"/>
+
+  <!-- 武田菱 -->
+  <g transform="translate(720,440)" class="t12" style="opacity:0;animation:fadeIn 1s ease forwards">
+    <polygon points="0,-8 6,-4 0,0 -6,-4" fill="rgba(60,45,30,.7)"/>
+    <polygon points="0,1 6,5 0,9 -6,5" fill="rgba(60,45,30,.7)"/>
+    <polygon points="-1,0 -7,-4 -13,0 -7,4" fill="rgba(60,45,30,.7)"/>
+    <polygon points="1,0 7,-4 13,0 7,4" fill="rgba(60,45,30,.7)"/>
+  </g>
+  <text x="700" y="465" class="txt-hand t12" style="font-size:8px;letter-spacing:.3em">TAKEDA</text>
+</svg>
+</div>
+
+<button class="replay" onclick="replay()">↻ REPLAY</button>
+<a href="mockup_entrance_variants.html" class="tolink">← BACK TO INDEX</a>
+
+<script>
+function replay(){
+  const svg=document.getElementById('svg');
+  const clone=svg.cloneNode(true);
+  svg.parentNode.replaceChild(clone,svg);
+}
+</script>
+</body>
+</html>

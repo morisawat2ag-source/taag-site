@@ -1,5 +1,5 @@
 # TAAG サイト構築 開発メモ
-最終更新: 2026-04-13（定期自動更新②: ファイル構成・セッション状態を再確認、差分なし。OUR WORKS実装は次回セッション待ち）
+最終更新: 2026-04-27（定期自動更新: 前回更新以降、新規セッション・ファイル変更なしのため内容維持・日付のみ更新）
 
 ## ★コードレビュー報告ポリシー（恒久ルール）
 本プロジェクト内でClaudeがコードを生成・修正した際は、回答末尾に必ず以下を報告すること。
@@ -27,6 +27,14 @@
 ## 概要
 武田建築設計事務所（t-2ag.com）のウェブサイトリニューアル。
 現在フロンティア社のSaaS型CMSで運用中。エントランスアニメーション等の独自演出を追加構築中。
+
+## 会社情報（最新）
+- 会社名: 株式会社 武田建築設計事務所（TAAG = Takeda And Architect Group）
+- 代表: 武田 嘉仁
+- 所在地: 〒186-0004 東京都国立市中 1-16-33-2F
+- 電話: **050-5482-3773**（2026-04-27現在）※旧番号 042-505-5752 は実物名刺写真に記載されているが現在は使用していない
+- 公開用メール: info@t-2ag.com（mockup等の公開素材では個人メールではなくこれを使用）
+- ※モックアップ等を Public リポジトリに置く際は、個人連絡先（武田氏個人メール、私用携帯番号）を記載しないこと
 
 ## CMS環境
 - プラットフォーム: フロンティア社 SaaS型CMS
@@ -68,17 +76,27 @@ TAAGサイト構築/
 │   └── 長沢1丁目pj/            — 商業施設（採用15カット＋不採用25枚）
 ├── src/                        — ソース・オブ・トゥルース（CSS/JS/HTML分離構成）★CMS移行向け
 │   ├── css/
-│   │   └── entrance.css        — エントランスページ用CSS
+│   │   ├── entrance.css        — エントランスページ用CSS
+│   │   └── ourworks.css        — OUR WORKSページ用CSS（2026-04-13追加）
 │   ├── js/
 │   │   └── entrance.js         — エントランスページ用JS
 │   ├── entrance.html           — エントランスページHTML（CSS/JS外部参照版）
+│   ├── ourworks.html           — OUR WORKSページHTML（2026-04-13追加、グリッドカードレイアウト）
 │   ├── mockup_concept_layouts.html — コンセプト画面レイアウト検討用モックアップ（2026-04-10）
 │   ├── mockup_concept_window.html  — コンセプト画面「窓」UI検討用モックアップ（2026-04-10）
-│   └── mockup_mobile_compare.html  — モバイル表示比較用モックアップ（2026-04-10）
+│   ├── mockup_mobile_compare.html  — モバイル表示比較用モックアップ（2026-04-10）
+│   ├── mockup_entrance_variants.html  — エントランス案6種の比較インデックス（2026-04-27追加）
+│   ├── mockup_entrance_01_process.html — ①BUILDING PROCESS（基礎→骨組み→屋根→外装→灯）
+│   ├── mockup_entrance_02_unfold.html  — ②PLAN→ELEVATION→AXONOMETRIC（2D→3D展開）
+│   ├── mockup_entrance_03_sketch.html  — ③HAND SKETCH（手描きスケッチ風、feTurbulence）
+│   ├── mockup_entrance_04_daycycle.html — ④A DAY IN ARCHITECTURE（朝→昼→夕→夜）
+│   ├── mockup_entrance_05_terrain.html — ⑤FROM THE LAND（等高線→敷地→建築）
+│   └── mockup_entrance_06_card.html    — ⑥A CARD HANDED TO YOU（名刺差し出し／ユーザー案）
 ├── taag_april_entrance.html    — 4月版エントランス（桜）モノリシック旧版・参照用
 ├── taag_april_entrance_trim.html — 4月版（トリミング写真カバー）※モバイル調整未適用
 ├── taag_entrance_may.html      — 5月版エントランス（鯉のぼり＋緑樹）
 ├── about.html                  — About Usページ
+├── TAAG_施工例リスト.xlsx      — 施工例リスト（2026-04-13追加、全13案件＝掲載中6件＋準備中7件）
 ├── .gitattributes              — Git属性設定（改行コード等）
 ├── .gitignore                  — Git追跡除外設定（マニュアル・スクショを公開対象外に）
 ├── CLAUDE.md                   — Claude向けプロジェクト起動指示（開発メモの読み込み指示等）
@@ -150,11 +168,31 @@ TAAGサイト構築/
 - コンセプト画面の縦サイズ = トップ画面と同じ `100dvh`（`display: flex; justify-content: center`）
 - ドットナビは画像窓と同じ右揃え
 
-## OUR WORKSページ（2026-04-10着手）
+## OUR WORKSページ（2026-04-10着手、2026-04-13実装開始）
 - 施工例6物件の写真を `ourworks_photos/` に整理済み（各フォルダに5枚程度を選定予定）
 - 参照デザイン: https://www.acra-a.com/works/（グリッドカードレイアウト）
 - レイアウト方針: 大きな写真カード＋物件名＋カテゴリのグリッド表示
-- ※セッション（TAAGサイト構築）内で写真選定のAgentコール中にセッション終了。`ourworks.html` は未作成。次回セッションで改めて実装着手が必要。
+- **2026-04-13: `src/ourworks.html` と `src/css/ourworks.css` を新規作成**（グリッドカードレイアウトのベース実装）
+- トップページ（entrance.html）の以下2箇所から `ourworks.html` にリンク接続済み：
+  - コンセプト画面下部の「VIEW OUR WORKS →」ボタン
+  - 上部ナビの「WORKS / 実績紹介」
+
+### 施工例リスト（TAAG_施工例リスト.xlsx、2026-04-13作成）
+- マスターDB（`TAAG_案件管理台帳.xlsx`、親フォルダ ClaudeWorkArea 直下）のコード体系に連動した施工例リスト
+- 全13案件を掲載：**掲載中6件**（サイトに写真掲載済み）＋**準備中7件**
+- 書式はマスターDBと統一（Yu Gothic・罫線・ストライプ・ヘッダーダークブラウン）
+- 掲載中6件はサイト掲載名・概要文・写真情報を引き継ぎ済み
+
+### マスターDB連携上の確定事項（2026-04-13）
+- 案件コード体系：`TAAG-{種別コード}-{受注年}-{連番}`（種別 R=住宅, C=商業, O=オフィス, M=医療, S=工場 など）
+- 受注年不明時は竣工年で代用
+- コード修正（5件）実施済み：
+  - TAAG-C-2024-001 → TAAG-C-2023-003（長沢1丁目、受注年2023に合わせ）
+  - TAAG-O-2024-001 → TAAG-M-2023-001（LeMonクリニック、種別O→M修正）
+  - TAAG-R-2024-001 → TAAG-R-2018-001（新丸子東1丁目、受注年2018に合わせ）
+  - TAAG-R-2024-002 → TAAG-R-2024-001（森邸、連番繰り上げ）
+  - TAAG-C-2024-002 → TAAG-C-2024-001（下北沢駅前、連番繰り上げ）
+- 案件ステータスドロップダウン：「受注 / 進行中 / 竣工 / 中途終了 / キャンセル」の5択（2026-04-13「中途終了」追加）
 
 ### 施工例一覧（確定）
 | 物件名 | 種別 | 概要 | 写真フォルダ |
@@ -229,7 +267,26 @@ GitHub Pages を採用。セットアップ完了済み。
 - 独自JSが実際にブラウザで実行されるか
 - 不可なら：SVGを「外部HTML」パーツに分割 or 画像化フォールバック or フロンティア有償依頼
 
+## エントランス別パターン検討（2026-04-27）
+現行（建築図面＋棒人間）に加え、もうワンパターンの方向性を比較検討中。
+6つのモックアップを `src/mockup_entrance_0X_*.html` に格納、`src/mockup_entrance_variants.html` から一覧。
+
+| # | コード名 | 方向性 | 備考 |
+|---|---|---|---|
+| 01 | BUILDING PROCESS | 基礎→骨組み→屋根→外装→灯 | 建築事務所らしさ正攻法 |
+| 02 | 2D→3D UNFOLD | 平面図→立面図→アクソメ | 図面言語の延長、既存トーン継承 |
+| 03 | HAND SKETCH | 手描きスケッチ風（揺らぎ線） | feTurbulence、Klee One、親近感 |
+| 04 | A DAY IN ARCHITECTURE | 朝→昼→夕→夜の時間経過 | 暗背景、感情に訴える |
+| 05 | FROM THE LAND | 等高線→敷地→建築 | コンセプチュアル、敷地読み |
+| 06 | A CARD HANDED TO YOU | 名刺差し出し（ユーザー案） | 3D perspective、パーソナル |
+
+検討ポイント：
+- 採用案決定後、本実装（CSS/JS分離、season切替対応、CMS貼付け前提）に展開
+- 既存の「クリックでトップへ」UXは維持
+- 季節バリエーション運用との整合（モチーフ差し替え可能か）
+
 ## 未対応事項
+- [ ] エントランス別パターン6案から採用案を選定 → 本実装へ展開（2026-04-27着手）
 - [ ] taag_april_entrance_trim.html へのモバイル調整（viewBox 804、translate 222、グリッド変更）
 - [ ] 12ヶ月自動切替版の実装
 - [ ] about.html 経歴の19XXプレースホルダー更新
@@ -242,10 +299,14 @@ GitHub Pages を採用。セットアップ完了済み。
 - [ ] ブラウザ連携時のタブグループ運用手順整理（管理画面タブをClaudeのタブグループに含める必要あり）
 - [x] Git本体のインストール → GitHub Pages セットアップ（2026-04-09完了）
 - [ ] src/entrance.html のスマホ最適化（レスポンシブ対応：メディアクエリ、フォントサイズ、SVGスケーリング等）
-- [ ] OUR WORKSページ（ourworks.html）の実装（グリッドカードレイアウト、各物件5枚程度）
+- [x] OUR WORKSページ（ourworks.html）の実装着手（2026-04-13、ベースレイアウト作成）
+- [ ] OUR WORKSページに各物件5枚程度の写真を反映（写真選定は進行中）
 - [ ] ourworks_photos/ の .gitignore 追加要否の確認（容量・個人情報の観点）
 - [ ] コンセプト画面（concept セクション）をsrc/配下のHTMLに統合
 - [ ] mockup_concept_*.html の内容を本番ファイルに反映・整理後削除
+- [x] トップページ「VIEW OUR WORKS →」と上部ナビ「WORKS」から ourworks.html へのリンク接続（2026-04-13完了）
+- [ ] ourworks.html の準備中7件の掲載方針決定（プレースホルダ表示か非表示か）
+- [ ] キャッシュバスター（entrance.css?v=15, entrance.js?v=15）の運用ルール整備
 
 ## 技術的な注意点
 - 各HTMLファイルは約400KB（SVGデータが大きい）

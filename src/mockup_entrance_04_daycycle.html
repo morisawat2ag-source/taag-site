@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>④ DAY CYCLE — TAAG mockup</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Share+Tech+Mono&family=Shippori+Mincho+B1:wght@400;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{
+  background:#1a1612;
+  font-family:'Share Tech Mono',monospace;
+  color:rgba(245,243,240,.85);
+  min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;gap:8px;overflow:hidden;
+  transition:background-color 1s linear;
+}
+.title{font-family:'Shippori Mincho B1',serif;font-size:13px;letter-spacing:.35em;opacity:.7}
+.desc{font-size:11px;letter-spacing:.18em;opacity:.5}
+.svgwrap{width:min(100%,920px);position:relative;cursor:pointer;border-radius:2px;overflow:hidden}
+svg{width:100%;height:auto;display:block}
+.replay{margin-top:6px;background:transparent;border:1px solid rgba(245,243,240,.35);padding:8px 22px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.28em;color:rgba(245,243,240,.7);cursor:pointer}
+.replay:hover{background:rgba(245,243,240,.05)}
+.tolink{margin-top:4px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.28em;color:rgba(245,243,240,.5);text-decoration:none}
+.tolink:hover{color:rgba(245,243,240,.85)}
+
+@keyframes skyShift{
+  0%   {stop-color:#2b2540}
+  10%  {stop-color:#5a4a55}
+  25%  {stop-color:#dba87a}
+  40%  {stop-color:#9bbed8}
+  55%  {stop-color:#c8d6e0}
+  70%  {stop-color:#dba87a}
+  85%  {stop-color:#3a3045}
+  100% {stop-color:#0d0a14}
+}
+@keyframes skyShiftBottom{
+  0%   {stop-color:#1a1822}
+  10%  {stop-color:#8b6a55}
+  25%  {stop-color:#f5d8b0}
+  40%  {stop-color:#e8eef2}
+  55%  {stop-color:#e0e8ec}
+  70%  {stop-color:#e8a878}
+  85%  {stop-color:#5a3a45}
+  100% {stop-color:#0a0810}
+}
+#skyTop{animation:skyShift 12s ease-in-out forwards}
+#skyBottom{animation:skyShiftBottom 12s ease-in-out forwards}
+
+@keyframes sunArc{
+  0%  {transform:translate(680px,420px);opacity:0}
+  10% {transform:translate(660px,360px);opacity:1}
+  25% {transform:translate(580px,200px);opacity:1;fill:#f5d8a0}
+  40% {transform:translate(420px,90px);opacity:1;fill:#fff5d8}
+  55% {transform:translate(260px,150px);opacity:1;fill:#ffe8b0}
+  70% {transform:translate(140px,300px);opacity:1;fill:#e88a55}
+  80% {transform:translate(100px,400px);opacity:.4;fill:#a04555}
+  85% {opacity:0}
+  100%{opacity:0}
+}
+#sun{animation:sunArc 12s ease-in-out forwards;transform-box:fill-box}
+
+@keyframes moonArc{
+  0%  {opacity:0}
+  82% {opacity:0;transform:translate(700px,440px)}
+  88% {opacity:.6;transform:translate(620px,300px)}
+  100%{opacity:.85;transform:translate(440px,140px)}
+}
+#moon{animation:moonArc 12s ease-in-out forwards;transform-box:fill-box}
+
+@keyframes shadowChange{
+  0%   {opacity:0;transform:scaleX(2.2)}
+  10%  {opacity:.45;transform:scaleX(2.5)}
+  25%  {opacity:.5;transform:scaleX(1.8)}
+  40%  {opacity:.35;transform:scaleX(.6)}
+  55%  {opacity:.3;transform:scaleX(.8)}
+  70%  {opacity:.5;transform:scaleX(-2.2)}
+  85%  {opacity:.35;transform:scaleX(-1.5)}
+  100% {opacity:.15;transform:scaleX(-1)}
+}
+#shadow{animation:shadowChange 12s ease-in-out forwards;transform-origin:400px 380px;transform-box:fill-box}
+
+@keyframes windowLight{
+  0%,55% {fill:rgba(60,55,50,.85);opacity:0}
+  56%    {opacity:0}
+  72%    {fill:rgba(255,210,140,.5);opacity:1}
+  100%   {fill:rgba(255,228,160,.95);opacity:1}
+}
+.win-light{animation:windowLight 12s ease-in-out forwards}
+
+/* オフィスらしく：日中は窓が時々消灯/点灯のランダムパターン */
+@keyframes windowDay1{
+  0%,15% {fill:rgba(60,55,50,.85);opacity:.0}
+  20%,40%{fill:rgba(180,200,210,.55);opacity:1}
+  41%,55%{fill:rgba(120,150,160,.45);opacity:1}
+  56%    {opacity:0}
+}
+.win-day{animation:windowDay1 12s ease-in-out forwards}
+
+@keyframes starsOn{
+  0%,80% {opacity:0}
+  100%   {opacity:.9}
+}
+#stars{animation:starsOn 12s ease-in-out forwards}
+
+.time-label{
+  font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.3em;
+  fill:rgba(245,243,240,.6);text-anchor:middle;opacity:0;
+  animation:labelFade 3s ease forwards;
+}
+@keyframes labelFade{0%{opacity:0}30%{opacity:.7}70%{opacity:.7}100%{opacity:0}}
+.lbl-dawn{animation-delay:.2s}
+.lbl-noon{animation-delay:4.4s}
+.lbl-dusk{animation-delay:8.0s}
+.lbl-night{animation-delay:10.6s}
+</style>
+</head>
+<body>
+
+<div class="title">④ A DAY IN ARCHITECTURE</div>
+<div class="desc">朝 → 昼 → 夕 → 夜。オフィスは時間とともに灯る。</div>
+
+<div class="svgwrap" onclick="replay()">
+<svg id="svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop id="skyTop" offset="0%" stop-color="#2b2540"/>
+      <stop id="skyBottom" offset="100%" stop-color="#1a1822"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 空 -->
+  <rect x="0" y="0" width="800" height="380" fill="url(#sky)"/>
+
+  <!-- 星 -->
+  <g id="stars" fill="rgba(255,255,255,.85)">
+    <circle cx="100" cy="60"  r="1"/>
+    <circle cx="180" cy="40"  r="1.2"/>
+    <circle cx="260" cy="80"  r=".8"/>
+    <circle cx="340" cy="50"  r="1"/>
+    <circle cx="500" cy="70"  r="1.1"/>
+    <circle cx="580" cy="40"  r=".9"/>
+    <circle cx="650" cy="90"  r="1"/>
+    <circle cx="720" cy="60"  r=".8"/>
+    <circle cx="120" cy="140" r=".7"/>
+    <circle cx="380" cy="120" r=".9"/>
+    <circle cx="600" cy="160" r=".8"/>
+  </g>
+
+  <!-- 月 -->
+  <circle id="moon" cx="0" cy="0" r="22" fill="rgba(245,238,220,.92)"/>
+
+  <!-- 太陽 -->
+  <circle id="sun" cx="0" cy="0" r="26" fill="#f5d8a0"/>
+
+  <!-- 地面 -->
+  <rect x="0" y="380" width="800" height="100" fill="rgba(35,28,22,.95)"/>
+
+  <!-- 影（地面に投影、横長のオフィスビル影） -->
+  <ellipse id="shadow" cx="400" cy="385" rx="120" ry="14" fill="rgba(0,0,0,.55)"/>
+
+  <!-- 街路樹（小） -->
+  <g fill="rgba(20,15,10,.92)">
+    <rect x="125" y="320" width="3" height="60"/>
+    <ellipse cx="126" cy="315" rx="20" ry="26"/>
+    <rect x="675" y="330" width="3" height="50"/>
+    <ellipse cx="676" cy="325" rx="16" ry="20"/>
+  </g>
+
+  <!-- ===== オフィスビル本体（フラット屋根、4階建て箱型） ===== -->
+  <g fill="rgba(20,15,10,.95)">
+    <!-- 本体 -->
+    <rect x="280" y="150" width="240" height="230"/>
+    <!-- パラペット -->
+    <rect x="276" y="142" width="248" height="8"/>
+  </g>
+
+  <!-- 床のディテール（薄い水平ライン、シルエットの中） -->
+  <line x1="280" y1="208" x2="520" y2="208" stroke="rgba(245,243,240,.07)" stroke-width=".5"/>
+  <line x1="280" y1="266" x2="520" y2="266" stroke="rgba(245,243,240,.07)" stroke-width=".5"/>
+  <line x1="280" y1="324" x2="520" y2="324" stroke="rgba(245,243,240,.07)" stroke-width=".5"/>
+
+  <!-- ===== 窓: 各階1本のストリップ窓（3階分 + エントランス階） ===== -->
+  <!-- F4 (top) -->
+  <rect x="298" y="160" width="206" height="38" fill="rgba(60,55,50,.85)" class="win-day" style="animation-delay:0s"/>
+  <!-- F3 -->
+  <rect x="298" y="218" width="206" height="38" fill="rgba(60,55,50,.85)" class="win-day" style="animation-delay:.2s"/>
+  <!-- F2 -->
+  <rect x="298" y="276" width="206" height="38" fill="rgba(60,55,50,.85)" class="win-day" style="animation-delay:.4s"/>
+  <!-- F1: エントランス階のガラス -->
+  <rect x="298" y="334" width="206" height="42" fill="rgba(60,55,50,.85)" class="win-day" style="animation-delay:.1s"/>
+
+  <!-- ===== 夜の灯り（部分点灯：残業のオフィスを示す） ===== -->
+  <!-- 上層は一部だけ光る -->
+  <rect x="298" y="160" width="80" height="38" fill="rgba(60,55,50,.85)" class="win-light" style="animation-delay:0s"/>
+  <rect x="298" y="218" width="206" height="38" fill="rgba(60,55,50,.85)" class="win-light" style="animation-delay:.2s"/>
+  <rect x="424" y="276" width="80" height="38" fill="rgba(60,55,50,.85)" class="win-light" style="animation-delay:.4s"/>
+  <rect x="298" y="334" width="206" height="42" fill="rgba(60,55,50,.85)" class="win-light" style="animation-delay:0s"/>
+
+  <!-- 灯りグロー -->
+  <ellipse cx="338" cy="180" rx="80" ry="32" fill="rgba(255,228,160,.0)"
+           style="animation:windowLight 12s ease-in-out forwards;mix-blend-mode:screen"/>
+  <ellipse cx="401" cy="237" rx="160" ry="32" fill="rgba(255,228,160,.0)"
+           style="animation:windowLight 12s ease-in-out forwards;mix-blend-mode:screen"/>
+  <ellipse cx="464" cy="295" rx="80" ry="32" fill="rgba(255,228,160,.0)"
+           style="animation:windowLight 12s ease-in-out forwards;mix-blend-mode:screen"/>
+  <ellipse cx="401" cy="355" rx="160" ry="35" fill="rgba(255,228,160,.0)"
+           style="animation:windowLight 12s ease-in-out forwards;mix-blend-mode:screen"/>
+
+  <!-- キャノピー（エントランス上部の薄い影） -->
+  <rect x="385" y="328" width="34" height="3" fill="rgba(245,243,240,.15)"/>
+
+  <!-- 時刻キャプション -->
+  <text class="time-label lbl-dawn"  x="400" y="32">— 06:00  DAWN —</text>
+  <text class="time-label lbl-noon"  x="400" y="32">— 12:00  NOON —</text>
+  <text class="time-label lbl-dusk"  x="400" y="32">— 18:00  DUSK —</text>
+  <text class="time-label lbl-night" x="400" y="32">— 23:00  NIGHT —</text>
+
+  <!-- 武田菱 -->
+  <g transform="translate(720,440)" fill="rgba(245,243,240,.7)">
+    <polygon points="0,-8 6,-4 0,0 -6,-4"/>
+    <polygon points="0,1 6,5 0,9 -6,5"/>
+    <polygon points="-1,0 -7,-4 -13,0 -7,4"/>
+    <polygon points="1,0 7,-4 13,0 7,4"/>
+  </g>
+  <text x="700" y="465" style="font-size:7px;fill:rgba(245,243,240,.55);letter-spacing:.3em;font-family:'Shippori Mincho B1',serif">TAKEDA</text>
+</svg>
+</div>
+
+<button class="replay" onclick="replay()">↻ REPLAY</button>
+<a href="mockup_entrance_variants.html" class="tolink">← BACK TO INDEX</a>
+
+<script>
+function replay(){
+  const svg=document.getElementById('svg');
+  const clone=svg.cloneNode(true);
+  svg.parentNode.replaceChild(clone,svg);
+}
+</script>
+</body>
+</html>

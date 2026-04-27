@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>⑥ MEISHI / CARD — TAAG mockup</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=EB+Garamond:wght@400;500&family=Montserrat:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;600&family=Share+Tech+Mono&family=Shippori+Mincho+B1:wght@400;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{
+  background:#f5f3f0;
+  background-image:
+    radial-gradient(ellipse at center, rgba(120,90,60,.05) 0%, transparent 65%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.005) 0, rgba(0,0,0,.005) 1px, transparent 1px, transparent 4px);
+  font-family:'Share Tech Mono',monospace;
+  color:rgba(50,45,40,.85);
+  min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:14px 16px;gap:6px;overflow:hidden;
+  perspective:1400px;
+}
+.title{font-family:'Shippori Mincho B1',serif;font-size:13px;letter-spacing:.35em;opacity:.65}
+.desc{font-size:11px;letter-spacing:.18em;opacity:.45}
+
+.stage{
+  width:min(100%,920px);
+  height:min(82vh,720px);
+  position:relative;cursor:pointer;
+  perspective:1400px;perspective-origin:50% 50%;
+  overflow:hidden;
+  border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* === 名刺（縦長・大型・白地黒字） === */
+.card-wrap{
+  width:min( 85vw, calc(72vh * 55 / 91), 460px );
+  aspect-ratio:55/91;
+  position:relative;
+  transform-style:preserve-3d;
+  opacity:0;
+  animation:cardEnter 5.2s cubic-bezier(.5,0,.25,1) forwards;
+  animation-delay:.3s;
+  pointer-events:none;
+  container-type:inline-size;
+  container-name:meishi;
+}
+
+/* 上から落下 → 中央停止 → 静止 → 背景に溶ける */
+@keyframes cardEnter{
+  0%   { transform:translate(0,-260%) rotateZ(-4deg) rotateX(18deg) scale(.85); opacity:0; filter:none; }
+  6%   { opacity:1; }
+  28%  { transform:translate(0,0) rotateZ(.6deg) rotateX(0deg) scale(1); opacity:1; }
+  34%  { transform:translate(0,0) rotateZ(0deg) scale(1); opacity:1; filter:none; }
+  60%  { opacity:1; transform:translate(0,0) scale(1); filter:none; }   /* 中央で静止 */
+  75%  { opacity:.65; transform:translate(0,0) scale(1.015); filter:blur(.6px); }
+  88%  { opacity:.22; transform:translate(0,0) scale(1.04); filter:blur(2.5px); }
+  100% { opacity:0; transform:translate(0,0) scale(1.07); filter:blur(5px); }
+}
+
+.card{
+  position:absolute;inset:0;
+  background:#ffffff;
+  box-shadow:
+    0 24px 50px rgba(0,0,0,.14),
+    0 8px 18px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,1);
+  border-radius:4px;
+  padding:7cqw;
+  display:flex;flex-direction:column;align-items:center;
+  color:rgba(20,16,12,.92);
+  overflow:hidden;
+  /* 影もカード自身と一緒にフェードする */
+  animation:cardShadowFade 5.2s ease forwards;
+  animation-delay:.3s;
+}
+@keyframes cardShadowFade{
+  0%,55% { box-shadow:0 24px 50px rgba(0,0,0,.14),0 8px 18px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,1); }
+  75%    { box-shadow:0 14px 28px rgba(0,0,0,.05),0 4px 10px rgba(0,0,0,.03),inset 0 1px 0 rgba(255,255,255,1); }
+  100%   { box-shadow:0 0 0 rgba(0,0,0,0); }
+}
+
+/* === ソフト・ホワイトグロー（カード周辺、フェード時に淡く膨張） === */
+.glow{
+  position:absolute;
+  left:50%;top:50%;
+  width:min( 110vw, 800px );
+  aspect-ratio:1;
+  transform:translate(-50%,-50%) scale(.6);
+  background:radial-gradient(circle at center, rgba(255,255,255,.55) 0%, rgba(255,255,255,.2) 40%, transparent 65%);
+  opacity:0;pointer-events:none;
+  animation:glowPulse 5.2s ease forwards;
+  animation-delay:.3s;
+  z-index:5;
+  mix-blend-mode:screen;
+}
+@keyframes glowPulse{
+  0%,55% { opacity:0; transform:translate(-50%,-50%) scale(.6); }
+  78%    { opacity:1; transform:translate(-50%,-50%) scale(1); }
+  100%   { opacity:0; transform:translate(-50%,-50%) scale(1.4); }
+}
+
+/* === 上：ロゴエリア（黒字に変更） === */
+.logo-block{
+  width:100%;
+  display:flex;flex-direction:column;align-items:center;
+  margin-top:5cqw;
+}
+.crest-circle{
+  width:38cqw;aspect-ratio:1;
+  border:0.55cqw solid rgba(20,16,12,.85);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:7cqw;
+}
+.crest-circle svg{width:55%;height:55%}
+.crest-circle svg polygon{fill:rgba(20,16,12,.92)}
+.taag-logo{
+  font-family:'EB Garamond','Cormorant Garamond',serif;
+  font-size:15cqw;
+  font-weight:400;
+  letter-spacing:.32em;
+  color:rgba(20,16,12,.95);
+  line-height:1;
+  margin-left:.32em;
+}
+.taag-sub{
+  font-family:'EB Garamond','Cormorant Garamond',serif;
+  font-size:3.4cqw;
+  letter-spacing:.18em;
+  color:rgba(40,30,22,.78);
+  margin-top:5cqw;
+  font-weight:400;
+}
+
+/* === 下：名前・会社情報 === */
+.info-block{
+  width:100%;
+  margin-top:auto;
+  display:flex;flex-direction:column;align-items:center;
+  gap:1.5cqw;
+}
+.name-jp{
+  font-family:'Noto Serif JP','Shippori Mincho B1',serif;
+  font-size:9cqw;
+  font-weight:500;
+  letter-spacing:.5em;
+  color:rgba(15,11,8,.95);
+  margin-left:.5em;
+}
+
+/* メール（CSS attr() 難読化） */
+.email-obf{
+  font-family:'EB Garamond','Cormorant Garamond',serif;
+  font-size:4.6cqw;
+  font-style:italic;
+  letter-spacing:.04em;
+  color:rgba(40,32,24,.85);
+  margin-bottom:4cqw;
+  user-select:none;
+}
+.email-obf::before{
+  content: attr(data-user) "\0040" attr(data-host) "\002E" attr(data-tld);
+}
+.firm-jp{
+  font-family:'Noto Serif JP','Shippori Mincho B1',serif;
+  font-size:5.2cqw;
+  font-weight:500;
+  letter-spacing:.18em;
+  color:rgba(15,11,8,.92);
+}
+.address,.phone{
+  font-family:'Noto Serif JP','Shippori Mincho B1',serif;
+  font-size:3.8cqw;
+  letter-spacing:.05em;
+  color:rgba(35,28,22,.82);
+  font-weight:400;
+  text-align:center;
+}
+.phone{font-family:'EB Garamond','Noto Serif JP',serif;letter-spacing:.02em}
+
+.hint{
+  margin-top:4px;font-family:'Montserrat',sans-serif;font-size:9px;
+  letter-spacing:.4em;color:rgba(50,45,40,.4);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:.85}}
+
+.replay{margin-top:4px;background:transparent;border:1px solid rgba(50,45,40,.35);padding:7px 20px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.28em;color:rgba(50,45,40,.6);cursor:pointer}
+.replay:hover{background:rgba(50,45,40,.05)}
+.tolink{margin-top:2px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.28em;color:rgba(50,45,40,.5);text-decoration:none}
+.tolink:hover{color:rgba(50,45,40,.85)}
+
+/* ==== モバイル ==== */
+@media (max-width:600px){
+  body{padding:8px 10px;gap:4px}
+  .title{font-size:10.5px;letter-spacing:.22em}
+  .desc{font-size:9.5px;letter-spacing:.10em}
+  .stage{height:min(78vh,640px)}
+  .card-wrap{width:min( 88vw, calc(70vh * 55 / 91), 380px )}
+  .replay{padding:6px 16px;font-size:9.5px}
+}
+
+/* ==== 横向き／低い画面 ==== */
+@media (max-height:520px){
+  .stage{height:min(86vh,520px)}
+  .card-wrap{width:min( 78vw, calc(80vh * 55 / 91), 320px )}
+  .title,.desc{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="title">⑥ A CARD HANDED TO YOU</div>
+<div class="desc">名刺が降りてきて、静かに背景へ溶けていく</div>
+
+<div class="stage" id="stage" onclick="replay()">
+
+  <!-- 周辺の柔らかい白光（フェード時に淡く膨張） -->
+  <div class="glow"></div>
+
+  <!-- 名刺（縦長・白地黒字） -->
+  <div class="card-wrap">
+    <div class="card">
+
+      <!-- 上：ロゴエリア -->
+      <div class="logo-block">
+        <div class="crest-circle">
+          <svg viewBox="-22 -22 44 44">
+            <polygon points="0,-13 9,-7 0,-1 -9,-7"/>
+            <polygon points="0,1 9,7 0,13 -9,7"/>
+            <polygon points="-1,0 -10,-6 -19,0 -10,6"/>
+            <polygon points="1,0 10,-6 19,0 10,6"/>
+          </svg>
+        </div>
+        <div class="taag-logo">TAAG</div>
+        <div class="taag-sub">Takeda And Architect Group</div>
+      </div>
+
+      <!-- 下：名前・会社情報 -->
+      <div class="info-block">
+        <div class="name-jp">武田 嘉仁</div>
+        <span class="email-obf"
+              data-user="info"
+              data-host="t-2ag"
+              data-tld="com"
+              aria-label="email"></span>
+        <div class="firm-jp">株式会社 武田建築設計事務所</div>
+        <div class="address">〒186-0004 東京都国立市中 1-16-33-2F</div>
+        <div class="phone">Tel:050-5482-3773</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="hint">CLICK TO REPLAY</div>
+<button class="replay" onclick="replay()">↻ REPLAY</button>
+<a href="mockup_entrance_variants.html" class="tolink">← BACK TO INDEX</a>
+
+<script>
+function replay(){
+  const stage=document.getElementById('stage');
+  const clone=stage.cloneNode(true);
+  clone.onclick=replay;
+  stage.parentNode.replaceChild(clone,stage);
+}
+</script>
+</body>
+</html>

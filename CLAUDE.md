@@ -1,6 +1,6 @@
 # TAAG プロジェクト — Claude向け起動指示
 
-このフォルダは **TAAG（武田建築設計事務所 / TAKEDA ARCHITECT & ASSOCIATES）** のウェブサイト構築プロジェクトです。
+このフォルダは **TAAG（武田建築設計事務所 / TAKEDA AND ARCHITECT GROUP）** のウェブサイト構築プロジェクトです。
 
 ## 作業開始前の必須手順
 

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>エントランス案 一覧 — TAAG mockup index</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&family=Shippori+Mincho+B1:wght@400;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{
+  background:#f5f3f0;
+  font-family:'Noto Sans JP',sans-serif;
+  color:rgba(50,45,40,.85);
+  min-height:100dvh;
+  padding:48px 24px 80px;
+}
+.wrap{max-width:1200px;margin:0 auto}
+
+.header{margin-bottom:48px;text-align:center}
+.h-en{
+  font-family:'Cormorant Garamond',serif;
+  font-size:34px;letter-spacing:.18em;font-weight:300;
+  color:rgba(50,45,40,.85);margin-bottom:6px;
+}
+.h-jp{
+  font-family:'Shippori Mincho B1',serif;
+  font-size:13px;letter-spacing:.4em;color:rgba(50,45,40,.55);
+  margin-bottom:18px;
+}
+.h-desc{
+  font-size:12px;letter-spacing:.08em;color:rgba(50,45,40,.55);
+  line-height:1.9;max-width:640px;margin:0 auto;
+}
+.h-line{
+  width:60px;height:1px;background:rgba(50,45,40,.4);
+  margin:18px auto 0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:28px;
+}
+.card{
+  display:block;text-decoration:none;
+  background:#fff;color:inherit;
+  border:1px solid rgba(50,45,40,.12);
+  padding:24px 24px 22px;
+  transition:all .35s ease;
+  position:relative;overflow:hidden;
+}
+.card:hover{
+  border-color:rgba(50,45,40,.45);
+  box-shadow:0 18px 40px rgba(50,45,40,.12);
+  transform:translateY(-3px);
+}
+.card-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:300;line-height:1;
+  color:rgba(50,45,40,.25);
+  letter-spacing:.05em;
+}
+.card-title-en{
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;letter-spacing:.32em;font-weight:500;
+  color:rgba(50,45,40,.85);
+  margin-top:14px;margin-bottom:6px;
+}
+.card-title-jp{
+  font-family:'Shippori Mincho B1',serif;
+  font-size:11px;letter-spacing:.18em;
+  color:rgba(50,45,40,.65);
+  margin-bottom:14px;
+}
+.card-desc{
+  font-size:12px;letter-spacing:.05em;line-height:1.85;
+  color:rgba(50,45,40,.7);
+  margin-bottom:14px;
+}
+.card-tags{
+  display:flex;flex-wrap:wrap;gap:6px;
+  font-family:'Share Tech Mono',monospace;font-size:9.5px;
+  color:rgba(50,45,40,.5);letter-spacing:.05em;
+}
+.card-tags span{
+  border:1px solid rgba(50,45,40,.2);
+  padding:3px 8px;border-radius:1px;
+}
+.card-cta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:18px;padding-top:14px;
+  border-top:1px solid rgba(50,45,40,.1);
+  font-family:'Montserrat',sans-serif;font-size:10px;
+  letter-spacing:.3em;color:rgba(50,45,40,.55);
+}
+.card-cta .arrow{
+  font-size:14px;transition:transform .3s;
+}
+.card:hover .card-cta{color:rgba(50,45,40,.95)}
+.card:hover .arrow{transform:translateX(4px)}
+
+/* バッジ：ユーザー案 */
+.badge-user{
+  position:absolute;top:14px;right:14px;
+  background:rgba(180,40,40,.85);color:#fff;
+  font-family:'Montserrat',sans-serif;font-size:8px;
+  letter-spacing:.25em;padding:3px 9px;border-radius:1px;
+}
+
+/* 既存案表示 */
+.existing{
+  margin-top:48px;padding:24px;
+  background:rgba(50,45,40,.04);
+  border-left:3px solid rgba(50,45,40,.4);
+}
+.existing-label{
+  font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.32em;
+  color:rgba(50,45,40,.55);margin-bottom:8px;
+}
+.existing-link{
+  font-family:'Shippori Mincho B1',serif;font-size:13px;letter-spacing:.12em;
+  color:rgba(50,45,40,.85);text-decoration:none;border-bottom:1px solid rgba(50,45,40,.3);
+  padding-bottom:1px;
+}
+.existing-link:hover{color:rgba(180,90,40,.95);border-color:rgba(180,90,40,.5)}
+.existing-desc{
+  font-size:11.5px;color:rgba(50,45,40,.6);line-height:1.7;
+  margin-top:10px;
+}
+
+/* 武田菱（フッター） */
+.foot{
+  margin-top:64px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.foot-mon{display:flex;align-items:center;justify-content:center}
+.foot-name{
+  font-family:'Shippori Mincho B1',serif;font-size:10px;
+  letter-spacing:.4em;color:rgba(50,45,40,.55);
+}
+
+@media (max-width:600px){
+  body{padding:32px 16px 60px}
+  .h-en{font-size:24px}
+  .grid{gap:18px}
+  .card{padding:20px 18px 18px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="h-en">Entrance Variants</div>
+    <div class="h-jp">エントランス・バリエーション 検討</div>
+    <p class="h-desc">
+      トップページ手前のエントランス演出について、6つの方向性をモックアップ化。<br>
+      各カードをクリックすると個別ページで動作を確認できます。
+    </p>
+    <div class="h-line"></div>
+  </header>
+
+  <div class="grid">
+
+    <a class="card" href="mockup_entrance_01_process.html">
+      <div class="card-num">01</div>
+      <div class="card-title-en">BUILDING PROCESS</div>
+      <div class="card-title-jp">建築プロセス・タイムラプス</div>
+      <p class="card-desc">基礎 → 骨組み → 屋根 → 外装の順で1棟が建ち上がり、最後に窓に灯がともる。「ものを建てる」プロセスを正面から見せる構成。</p>
+      <div class="card-tags"><span>SVG line draw</span><span>warm</span><span>建築事務所らしさ</span></div>
+      <div class="card-cta"><span>VIEW MOCKUP</span><span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="mockup_entrance_02_unfold.html">
+      <div class="card-num">02</div>
+      <div class="card-title-en">2D → 3D UNFOLD</div>
+      <div class="card-title-jp">平面図 → 立面図 → アクソメ</div>
+      <p class="card-desc">真上から見た平面図が縮小・退場し、立面図が描かれ、最後に立体（アクソメ）が浮かび上がる。図面言語の延長線で既存トーンに馴染む。</p>
+      <div class="card-tags"><span>図面 → 立体</span><span>抽象的</span><span>3フェーズ</span></div>
+      <div class="card-cta"><span>VIEW MOCKUP</span><span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="mockup_entrance_03_sketch.html">
+      <div class="card-num">03</div>
+      <div class="card-title-en">HAND SKETCH</div>
+      <div class="card-title-jp">手描きスケッチ風</div>
+      <p class="card-desc">スケッチブックに鉛筆で描き上げていくような揺らぎのある線。書き込まれる注釈、太陽、雲、棒人間。親しみやすさを前面に。</p>
+      <div class="card-tags"><span>feTurbulence</span><span>Klee One</span><span>暖色</span><span>親近感</span></div>
+      <div class="card-cta"><span>VIEW MOCKUP</span><span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="mockup_entrance_04_daycycle.html">
+      <div class="card-num">04</div>
+      <div class="card-title-en">A DAY IN ARCHITECTURE</div>
+      <div class="card-title-jp">1日の時間経過</div>
+      <p class="card-desc">建物のシルエットは固定。空が朝→昼→夕→夜と移ろい、影の方向、太陽と月の運行、夜の窓灯りで「建築は時間を住まう」を表現。</p>
+      <div class="card-tags"><span>大気感</span><span>暗背景</span><span>感情に訴える</span></div>
+      <div class="card-cta"><span>VIEW MOCKUP</span><span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="mockup_entrance_05_terrain.html">
+      <div class="card-num">05</div>
+      <div class="card-title-en">FROM THE LAND</div>
+      <div class="card-title-jp">土地から始まる建築</div>
+      <p class="card-desc">等高線が描かれ、敷地境界（破線）が引かれ、最後に建築が地面から立ち上がる。長沢pjや森邸など「敷地を読む」TAAGの設計姿勢と直結。</p>
+      <div class="card-tags"><span>地形図</span><span>コンセプチュアル</span><span>プロ向け訴求</span></div>
+      <div class="card-cta"><span>VIEW MOCKUP</span><span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="mockup_entrance_06_card.html">
+      <span class="badge-user">YOUR IDEA</span>
+      <div class="card-num">06</div>
+      <div class="card-title-en">A CARD HANDED TO YOU</div>
+      <div class="card-title-jp">名刺を差し出す</div>
+      <p class="card-desc">暗いテーブル上、手のシルエットが画面奥から名刺を差し出す。スポットライトと光沢が走り、訪問者を一対一で迎え入れるシーン。</p>
+      <div class="card-tags"><span>3D perspective</span><span>暗背景</span><span>パーソナル</span><span>武田嘉仁</span></div>
+      <div class="card-cta"><span>VIEW MOCKUP</span><span class="arrow">→</span></div>
+    </a>
+
+  </div>
+
+  <!-- 既存案 -->
+  <div class="existing">
+    <div class="existing-label">― CURRENT / 既存案 ―</div>
+    <a class="existing-link" href="entrance.html">00. ARCHITECT'S DRAWING（建築図面風 + 棒人間）</a>
+    <p class="existing-desc">
+      現行のエントランスページ。建築図面（GL線・寸法・タイトルブロック）が描かれ、棒人間が歩いてドアに入る。<br>
+      季節モチーフ（4月：桜、5月：鯉のぼり）対応済み。今回の検討はこの「もうワンパターン」を増やす目的。
+    </p>
+  </div>
+
+  <!-- フッター武田菱 -->
+  <div class="foot">
+    <div class="foot-mon">
+      <svg viewBox="-22 -22 44 44" width="32" height="32">
+        <polygon points="0,-13 9,-7 0,-1 -9,-7" fill="rgba(50,45,40,.7)"/>
+        <polygon points="0,1 9,7 0,13 -9,7" fill="rgba(50,45,40,.7)"/>
+        <polygon points="-1,0 -10,-6 -19,0 -10,6" fill="rgba(50,45,40,.7)"/>
+        <polygon points="1,0 10,-6 19,0 10,6" fill="rgba(50,45,40,.7)"/>
+      </svg>
+    </div>
+    <div class="foot-name">TAKEDA AND ARCHITECT GROUP</div>
+  </div>
+
+</div>
+
+</body>
+</html>
